@@ -24,8 +24,32 @@
         <h2 class="name">Jason Ropp</h2>
         <h2 class="phone">541-615-9999</h2>
         <h2 class="email">dummy@email.com</h2>
-        <button type="button" onclick='displayHideUserDetails()'>Details</button>
+        <button id="detailsButton" type="button" onclick='displayHideUserDetails()'>Hide Details</button>
     </hgroup>
 </body>
+<script>
+    function displayHideUserDetails() {
 
+        var details = ['phone', 'email', 'id'];
+        for (let i = 0; i < details.length; i++) {
+            let elemClass = details[i];
+            let elem = document.getElementsByClassName(elemClass)[0];
+            
+            if (getComputedStyle(elem).display === "none") {
+                showElement(elem);
+            }
+            else if(getComputedStyle(elem).display === "block") {
+                hideElement(elem);
+            }
+        }
+    }
+    function hideElement(elem) {
+        elem.style.display = "none"
+        document.getElementById('detailsButton').textContent = "Show Details";
+    }
+    function showElement(elem) {
+        elem.style.display = "block"
+        document.getElementById('detailsButton').textContent = "Hide Details";
+    }
+</script>
 </html>
