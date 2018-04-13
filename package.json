@@ -1,11 +1,11 @@
 {
-  "name": "Test-For-Server",
+  "name": "jason-ropp-js-iobp",
   "version": "1.0.0",
   "description": "## Description This app allows you to create and edit user profiles, each of which have an ID, Name, Number, and Email Address.",
   "main": "index.js",
   "scripts": {
     "build": "",
-    "start": "node app.js",
+    "start": "echo \"Error: no test specified\" && exit 1",
     "help": "npm-scripts-help"
   },
   "repository": {
@@ -18,10 +18,8 @@
   "bugs": {
     "url": "https://github.com/Jropp/jason-ropp-js-iobp/issues"
   },
-  "homepage": "https://github.com/Jropp/jason-ropp-js-iobp#users-list",
-  "dependencies": {
-    "server": "^1.0.18"
-  },
+  "homepage": "https://github.com/Jropp/jason-ropp-js-iobp#readme",
+  "dependencies": {},
   "devDependencies": {
     "npm-scripts-help": "^0.8.0"
   },
