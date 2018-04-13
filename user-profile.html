@@ -21,15 +21,15 @@
     <h1>User Profile:</h1>
     <hgroup class="user-card">
         <h2 class="name">Jason Ropp</h2>
-        <h3 class="id">ID: Wombat</h2>
-        <h3 class="phone">541-615-9999</h2>
-        <h3 class="email">dummy@email.com</h2>
+        <h3 class="id">ID: Wombat</h3>
+        <h3 class="phone">541-615-9999</h3>
+        <h3 class="email">dummy@email.com</h3>
         <button id="detailsButton" type="button" onclick='displayHideUserDetails()'>Hide Details</button>
     </hgroup>
 </body>
 <script>
     function displayHideUserDetails() {
-        
+
         let nameCardNodes = Array.prototype.slice.call(event.target.parentNode.childNodes);
 
         for (let i = 1; i < nameCardNodes.length; i++) {
