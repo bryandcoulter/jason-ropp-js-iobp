@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "",
-    "start": "echo \"Error: no test specified\" && exit 1",
+    "start": "python -m SimpleHTTPServer 1820",
     "help": "npm-scripts-help"
   },
   "repository": {
@@ -29,10 +29,10 @@
     ],
     "build" :"this will build the project",
     "start" : {
-      "Desciption": "will run the project",
+      "Desciption": "Will run the project on server at localhost:1820",
       "Usage": "",
       "Long Description" : [
-        "What more do you want!?"
+        "Runs $python -m SimpleHTTPServer 1820"
       ]
     }
   }
