@@ -24,11 +24,11 @@
         <h2 class="name">Jason Ropp</h2>
         <h2 class="phone">541-615-9999</h2>
         <h2 class="email">dummy@email.com</h2>
-        <button id="detailsButton" type="button" onclick='displayHideUserDetails()'>Hide Details</button>
+        <button id="detailsButton" type="button" onclick='toggleUserDetails()'>Hide Details</button>
     </hgroup>
 </body>
 <script>
-    function displayHideUserDetails() {
+    function toggleUserDetails() {
 
         var details = ['phone', 'email', 'id'];
         for (let i = 0; i < details.length; i++) {
