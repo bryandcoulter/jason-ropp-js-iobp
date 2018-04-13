@@ -20,26 +20,30 @@
     </header>
     <h1>User Profile:</h1>
     <hgroup class="user-card">
-        <h2 class="id">ID: Wombat</h2>
         <h2 class="name">Jason Ropp</h2>
-        <h2 class="phone">541-615-9999</h2>
-        <h2 class="email">dummy@email.com</h2>
-        <button id="detailsButton" type="button" onclick='displayHideUserDetails()'>Hide Details</button>
+        <h3 class="id">ID: Wombat</h2>
+        <h3 class="phone">541-615-9999</h2>
+        <h3 class="email">dummy@email.com</h2>
     </hgroup>
+    <button id="detailsButton" type="button" onclick='displayHideUserDetails()'>Hide Details</button>
 </body>
 <script>
     function displayHideUserDetails() {
 
-        var details = ['phone', 'email', 'id'];
-        for (let i = 0; i < details.length; i++) {
-            let elemClass = details[i];
-            let elem = document.getElementsByClassName(elemClass)[0];
-            
-            if (getComputedStyle(elem).display === "none") {
-                showElement(elem);
-            }
-            else if(getComputedStyle(elem).display === "block") {
-                hideElement(elem);
+        let name = document.getElementsByClassName("name")[0];
+        let nameCardNodes = Array.prototype.slice.call(name.parentNode.childNodes);
+
+        for (let i = 1; i < nameCardNodes.length; i++) {
+            let node = nameCardNodes[i];
+
+            if (node.nodeName != "#text" && node.nodeName == "H3") {
+                if (getComputedStyle(node).display === "none") {
+                    showElement(node);
+                }
+                else if (getComputedStyle(node).display === "block") {
+                    hideElement(node);
+                }
+
             }
         }
     }
@@ -52,4 +56,5 @@
         document.getElementById('detailsButton').textContent = "Hide Details";
     }
 </script>
+
 </html>

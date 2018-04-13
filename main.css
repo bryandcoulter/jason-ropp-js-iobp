@@ -48,6 +48,10 @@ nav > a:after {
 .user-card > .name {
     text-decoration: underline;
 }
+.user-card > .id {
+    position: relative;
+    left: 15px;
+}
 .user-card > .phone {
     position: relative;
     left: 15px;
