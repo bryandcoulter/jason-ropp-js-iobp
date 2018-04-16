@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "",
-    "start": "python -m SimpleHTTPServer 1820",
-    "help": "npm-scripts-help"
+    "start": "npm run lint | python -m SimpleHTTPServer 1820",
+    "help": "npm-scripts-help",
+    "lint":  "ux-lint src/*.js"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,11 @@
   "bugs": {
     "url": "https://github.com/Jropp/jason-ropp-js-iobp/issues"
   },
-  "homepage": "https://github.com/Jropp/jason-ropp-js-iobp#readme",
+  "homepage": "https://github.com/Jropp/jason-ropp-js-iobp#user-profile",
   "dependencies": {},
   "devDependencies": {
-    "npm-scripts-help": "^0.8.0"
+    "npm-scripts-help": "^0.8.0",
+    "ux-lint": "^1.8.0"
   },
   "scriptshelp": {
     "help-message": [
