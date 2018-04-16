@@ -7,7 +7,7 @@
     "build": "",
     "start": "npm run lint | python -m SimpleHTTPServer 1820",
     "help": "npm-scripts-help",
-    "lint":  "ux-lint src/*.js"
+    "lint":  "ux-lint --fix src/*.js"
   },
   "repository": {
     "type": "git",

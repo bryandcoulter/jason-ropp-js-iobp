@@ -1,7 +1,12 @@
-'use strict'
-let a = 'wombat';
-let b = 'chicken';
+'use strict';
 
-function err(){
-    if(a && b){}
+
+function err() {
+  let a = 'wombat';
+  let b = 'chicken';
+  if (a && b) {
+    return a;
+  }
 }
+
+err();
