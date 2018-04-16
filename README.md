@@ -5,7 +5,7 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 
 ## how to use
 
-###NPM Scripts
+### NPM Scripts
     To serve the app:
 
         $ npm start 
