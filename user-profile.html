@@ -20,36 +20,40 @@
     </header>
     <h1>User Profile:</h1>
     <hgroup class="user-card">
-        <h2 class="id">ID: Wombat</h2>
-        <h3 class="name">Jason Ropp</h3>
+        <h2 class="name">Jason Ropp</h2>
+        <h3 class="id">ID: Wombat</h3>
         <h3 class="phone">541-615-9999</h3>
-        <h3 class="email"><a>dummy@email.com</a></h3>
+        <h3 class="email">
+            <a>dummy@email.com</a>
+        </h3>
         <button id="detailsButton" type="button" onclick='toggleUserDetails()'>Hide Details</button>
     </hgroup>
 </body>
 <script>
     function toggleUserDetails() {
 
-        var details = ['phone', 'email', 'id'];
-        for (let i = 0; i < details.length; i++) {
-            let elemClass = details[i];
-            let elem = document.getElementsByClassName(elemClass)[0];
-            
-            if (getComputedStyle(elem).display === "none") {
-                showElement(elem);
+        let userElems = Array.prototype.slice.call(event.target.parentNode.children);
+
+        for (let i = 0; i < userElems.length; i++) {
+            let elem = userElems[i];
+
+            if (elem.nodeName == "H3") {
+                toggleDisplay(elem);
             }
-            else if(getComputedStyle(elem).display === "block") {
-                hideElement(elem);
-            }
+
         }
     }
-    function hideElement(elem) {
-        elem.style.display = "none"
-        document.getElementById('detailsButton').textContent = "Show Details";
+
+    function toggleDisplay(elem) {
+
+        // Bug Fix: The first instance on page load does not register the display block style, even when added explicitly in main.css. 
+        if (elem.style.display === "") {
+            return elem.style.display = "none"
+        } else {
+            (elem.style.display == "block") ? elem.style.display = "none" : elem.style.display = "block";
+        }
     }
-    function showElement(elem) {
-        elem.style.display = "block"
-        document.getElementById('detailsButton').textContent = "Hide Details";
-    }
+   
 </script>
+
 </html>
