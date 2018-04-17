@@ -10,12 +10,9 @@
     "help": "npm-scripts-help",
     "lint": "ux-lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jropp/jason-ropp-js-iobp.git"
-  },
+  "repository": "git+https://github.com/Jropp/jason-ropp-js-iobp.git",
   "keywords": [],
-  "author": "",
+  "author": "<jason.ropp@banno.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Jropp/jason-ropp-js-iobp/issues"
