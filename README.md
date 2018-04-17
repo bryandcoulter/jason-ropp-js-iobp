@@ -6,16 +6,16 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 ## how to use
 
 ### NPM Scripts
-    To serve the app:
+    To serve the app (also runs ux-lint):
 
-        $ npm start 
+        $ yarn start 
 
     To build the app (Not currently functional):
 
-        $ npm run build
+        $ yarn run build
 
     To see a list of available scripts [or a single script]: 
     
-        $ npm run help [filter scripts]
+        $ yarn run help [filter scripts]
 
 ## dependencies

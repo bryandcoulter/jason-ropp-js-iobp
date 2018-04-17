@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prestart": "ux-lint",
-    "start": "npm run serve",
+    "start": "yarn run serve",
     "serve": "python -m SimpleHTTPServer 1820",
     "help": "npm-scripts-help",
     "lint": "ux-lint"
