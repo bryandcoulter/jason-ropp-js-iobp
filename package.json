@@ -4,10 +4,11 @@
   "description": "## Description This app allows you to create and edit user profiles, each of which have an ID, Name, Number, and Email Address.",
   "main": "index.js",
   "scripts": {
-    "build": "",
-    "start": "npm run lint | python -m SimpleHTTPServer 1820",
+    "prestart": "ux-lint",
+    "start": "npm run serve",
+    "serve": "python -m SimpleHTTPServer 1820",
     "help": "npm-scripts-help",
-    "lint":  "ux-lint --fix src/*.js"
+    "lint": "ux-lint"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/Jropp/jason-ropp-js-iobp/issues"
   },
-  "homepage": "https://github.com/Jropp/jason-ropp-js-iobp#user-profile",
+  "homepage": "https://github.com/Jropp/jason-ropp-js-iobp",
   "dependencies": {},
   "devDependencies": {
     "npm-scripts-help": "^0.8.0",

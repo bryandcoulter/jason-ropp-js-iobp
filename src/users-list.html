@@ -65,24 +65,24 @@
         let userElems = Array.prototype.slice.call(event.target.parentNode.children);
 
         for (let i = 0; i < userElems.length; i++) {
-            let elem = userElems[i];
+          let elem = userElems[i];
 
-            if (elem.nodeName == "H3") {
-                toggleDisplay(elem);
-            }
+          if (elem.nodeName == 'H3') {
+            toggleDisplay(elem);
+          }
 
         }
-    }
+      }
 
-    function toggleDisplay(elem) {
+      function toggleDisplay(elem) {
 
-        // Bug Fix: The first instance on page load does not register the display block style, even when added explicitly in main.css. 
-        if (elem.style.display === "") {
-            return elem.style.display = "none"
+        // Bug Fix: The first instance on page load does not register the display block style, even when added explicitly in main.css.
+        if (elem.style.display === '') {
+          return elem.style.display = 'none';
         } else {
-            (elem.style.display == "block") ? elem.style.display = "none" : elem.style.display = "block";
+          (elem.style.display == 'block') ? elem.style.display = 'none' : elem.style.display = 'block';
         }
-    }
-   
+      }
+  
 </script>
 </html>
