@@ -10,10 +10,6 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 
         $ yarn start 
 
-    To build the app (Not currently functional):
-
-        $ yarn run build
-
     To see a list of available scripts [or a single script]: 
     
         $ yarn run help [filter scripts]
