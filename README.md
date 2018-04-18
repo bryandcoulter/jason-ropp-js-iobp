@@ -8,10 +8,14 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 ### NPM Scripts
     To serve the app (also runs ux-lint):
 
-        $ yarn start 
+        `$ yarn start`
 
     To see a list of available scripts [or a single script]: 
     
-        $ yarn run help [filter scripts]
+        `$ yarn run help [filter scripts]`
+
+    To lint 
+
+        `$ yarn lint`
 
 ## dependencies
