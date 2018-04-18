@@ -4,11 +4,11 @@
   "description": "## Description This app allows you to create and edit user profiles, each of which have an ID, Name, Number, and Email Address.",
   "main": "index.js",
   "scripts": {
-    "prestart": "ux-lint",
+    "prestart": "ux-lint src/*.html",
     "start": "yarn run serve",
     "serve": "python -m SimpleHTTPServer 1820",
     "help": "npm-scripts-help",
-    "lint": "ux-lint"
+    "lint": "ux-lint src/*.html"
   },
   "repository": "git+https://github.com/Jropp/jason-ropp-js-iobp.git",
   "keywords": [],
