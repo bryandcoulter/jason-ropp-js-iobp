@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -12,10 +12,10 @@
 <body>
     <header>
         <nav>
-            <a>User List</a>
-            <a>Create User</a>
-            <a>Edit User</a>
-            <a>User Profile</a>
+            <a href="something">User List</a>
+            <a href="something">Create User</a>
+            <a href="something">Edit User</a>
+            <a href="something">User Profile</a>
         </nav>
     </header>
 
@@ -23,16 +23,15 @@
         Users:
     </h1>
     <ul>
-       
         <li>
             <hgroup class="user-card">
                 <h2 class="name">Jason Ropp</h2>
                 <h3 class="id">ID: Wombat</h3>
                 <h3 class="phone">541-615-9999</h3>
                 <h3 class="email">
-                    <a>dummy@email.com</a>
+                  <a href="something">dummy@email.com</a>
                 </h3>
-                <button id="detailsButton" type="button" onclick='toggleUserDetails(event)'>Hide Details</button>
+                <button type="button" onclick="toggleUserDetails(event)">Hide Details</button>
             </hgroup>
         </li>
         <li>
@@ -41,9 +40,9 @@
                 <h3 class="id">ID: Wombat</h3>
                 <h3 class="phone">541-615-9999</h3>
                 <h3 class="email">
-                    <a>dummy@email.com</a>
+                    <a href="something">dummy@email.com</a>
                 </h3>
-                <button id="detailsButton" type="button" onclick='toggleUserDetails(event)'>Hide Details</button>
+                <button type="button" onclick="toggleUserDetails(event)">Hide Details</button>
             </hgroup>
         </li>
         <li>
@@ -52,37 +51,39 @@
                 <h3 class="id">ID: Wombat</h3>
                 <h3 class="phone">541-615-9999</h3>
                 <h3 class="email">
-                    <a>dummy@email.com</a>
+                    <a href="something">dummy@email.com</a>
                 </h3>
-                <button id="detailsButton" type="button" onclick='toggleUserDetails(event)'>Hide Details</button>
+                <button type="button" onclick="toggleUserDetails(event)">Hide Details</button>
             </hgroup>
         </li>
     </ul>
 </body>
 <script>
-    function toggleUserDetails(event) {
+  'use strict';
 
-        let userElems = Array.prototype.slice.call(event.target.parentNode.children);
+  let toggleDisplay = function(elem) {
+    // Bug Fix: The first instance on page load
+    // does not register the display block style,
+    // even when added explicitly in main.css.
+    if (elem.style.display === '') {
+      elem.style.display = 'none';
 
-        for (let i = 0; i < userElems.length; i++) {
-          let elem = userElems[i];
-
-          if (elem.nodeName === 'H3') {
-            toggleDisplay(elem);
-          }
-          
-        }
-      }
-
-      function toggleDisplay(elem) {
-
-        // Bug Fix: The first instance on page load does not register the display block style, even when added explicitly in main.css.
-        if (elem.style.display === '') {
-          return elem.style.display = 'none';
-        } else {
-          (elem.style.display == 'block') ? elem.style.display = 'none' : elem.style.display = 'block';
-        }
-      }
+    } else {
+      elem.style.display = (elem.style.display === 'block') ? 'none' : 'block';
+    }
+  };
   
-</script>
+  let toggleUserDetails = function(event) { // eslint-disable-line
+    let userElems = Array.prototype.slice.call(event.target.parentNode.children);
+
+    for (let i = 0; i < userElems.length; i++) {
+      let elem = userElems[i];
+
+      if (elem.nodeName === 'H3') {
+        toggleDisplay(elem);
+      }
+    }
+  };
+  
+  </script>
 </html>

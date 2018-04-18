@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "prestart": "ux-lint src/*.html",
-    "start": "yarn run serve",
+    "start": "npm run serve",
     "serve": "python -m SimpleHTTPServer 1820",
     "help": "npm-scripts-help",
     "lint": "ux-lint src/*.html"
   },
-  "repository": "git+https://github.com/Jropp/jason-ropp-js-iobp.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jropp/jason-ropp-js-iobp.git"
+  },
   "keywords": [],
   "author": "<jason.ropp@banno.com>",
   "license": "ISC",
