@@ -59,32 +59,31 @@
     </ul>
 </body>
 <script>
-'use strict';
+  'use strict';
 
-    function toggleUserDetails(event) {
+  let toggleDisplay = function(elem) {
+    // Bug Fix: The first instance on page load
+    // does not register the display block style,
+    // even when added explicitly in main.css.
+    if (elem.style.display === '') {
+      elem.style.display = 'none';
 
-      let userElems = Array.prototype.slice.call(event.target.parentNode.children);
+    } else {
+      elem.style.display = (elem.style.display === 'block') ? 'none' : 'block';
+    }
+  };
+  
+  let toggleUserDetails = function(event) { // eslint-disable-line
+    let userElems = Array.prototype.slice.call(event.target.parentNode.children);
 
-      for (let i = 0; i < userElems.length; i++) {
-        let elem = userElems[i];
+    for (let i = 0; i < userElems.length; i++) {
+      let elem = userElems[i];
 
-        if (elem.nodeName === 'H3') {
-          toggleDisplay(elem);
-        }
+      if (elem.nodeName === 'H3') {
+        toggleDisplay(elem);
       }
     }
-
-    function toggleDisplay(elem) {
-        // Bug Fix: The first instance on page load
-        // does not register the display block style,
-        // even when added explicitly in main.css.
-      if (elem.style.display === '') {
-        elem.style.display = 'none';
-        return 
-      } else {
-        (elem.style.display === 'block') ? elem.style.display = 'none' : elem.style.display = 'block';
-      }
-    }
-        
-</script>
+  };
+  
+  </script>
 </html>
