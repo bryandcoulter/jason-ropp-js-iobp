@@ -37,7 +37,7 @@
       "Desciption": "Will run the project on server at localhost:1820",
       "Usage": "",
       "Long Description": [
-        "Runs $python -m SimpleHTTPServer 1820"
+        ""
       ]
     }
   }
