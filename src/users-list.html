@@ -12,6 +12,7 @@
 <body>
     <header>
         <nav>
+          <a href="./index.html">Home</a>
           <a href="./users-list.html">User List</a>
           <a href="./new-user.html">Create User</a>
           <a href="./edit-user.html">Edit User</a>
@@ -72,7 +73,7 @@
       elem.style.display = (elem.style.display === 'block') ? 'none' : 'block';
     }
   };
-  
+
   let toggleUserDetails = function(event) { // eslint-disable-line no-unused-vars
     let userElems = Array.prototype.slice.call(event.target.parentNode.children);
 
@@ -84,6 +85,6 @@
       }
     }
   };
-  
+
   </script>
 </html>
