@@ -1,0 +1,53 @@
+<!--
+Edit User
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="edit-user">
+	<template>
+		<style include="shared-styles">
+			:host {
+				display: block;
+				padding: 10px;
+			}
+		</style>
+
+		<h1>Edit User:</h1>
+		<form class="user-card">
+			<!-- TODO: databind placeholder information of user being edited -->
+			<label>Name:
+				<input type="text" placeholder="Name" value="{{user.name}}">
+			</label>
+			<label>Phone:
+				<input type="text" placeholder="Phone" value="{{user.phone}}">
+			</label>
+			<button on-click="saveEdit">Submit</button>
+		</form>
+
+	</template>
+
+	<script>
+		class EditUser extends Polymer.Element {
+			static get is() { return 'edit-user'; }
+			static get properties() {
+				return {
+					user: {
+
+					}
+
+				}
+			}
+			saveEdit() {
+				this.dispatchEvent(new CustomEvent('save user edit', {
+					bubbles: true,
+					composed: true,
+					detail: this.user
+				}));
+			}
+		}
+
+		window.customElements.define(EditUser.is, EditUser);
+	</script>
+</dom-module>
