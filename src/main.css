@@ -1,0 +1,54 @@
+form {
+	background-color: gainsboro;
+	  border-radius: 5px;
+    box-shadow: 3px 3px 2px lightgrey;
+    padding: 15px;
+    width: 300px;
+    border-radius: 5px;
+}
+h1{
+    margin: 10px;
+}
+
+header{
+		background-color: gainsboro;
+		box-shadow: 3px 3px 2px lightgrey;
+		border-radius: 5px;
+    padding: 10px;
+}
+input{
+    margin: 5px;
+    width: 200px;
+}
+li{
+    list-style: none;
+}
+nav > a:after {
+    content: " | "
+}
+
+.user-card{
+	background-color: gainsboro;
+    width: fit-content;
+    min-width: 300px;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 2px lightgrey;
+}
+.user-card > .email {
+    position: relative;
+    left: 15px;
+}
+.user-card > h2 {
+    margin: 5px;
+}
+.user-card > .name {
+    text-decoration: underline;
+}
+.user-card > .phone {
+    position: relative;
+    left: 15px;
+}
+
+
