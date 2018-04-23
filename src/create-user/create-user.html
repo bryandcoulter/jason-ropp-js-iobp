@@ -1,0 +1,56 @@
+<!--
+Web component for creating a new user
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="create-user">
+	<template>
+		<style include="shared-styles">
+			:host {
+				display: block;
+				padding: 10px;
+			}
+		</style>
+
+		<h1>Create New User:</h1>
+		<form>
+			<label>Name:
+				<input value="{{user.name}}" type="text">
+			</label>
+			<br>
+			<label>Phone:
+				<input value="{{user.phone}}" type="text">
+			</label>
+			<br>
+			<label>Email:
+				<input value="{{user.email}}" type="text">
+			</label>
+			<br>
+			<button on-click="createUser" type="submit">Submit</button>
+		</form>
+
+	</template>
+
+	<script>
+		class CreateUser extends Polymer.Element {
+			static get is() { return 'create-user'; }
+			static get properties() {
+				return {
+					user: {
+						type: Object,
+					}
+
+				}
+			}
+			createUser(){
+				// Check to see if it works
+				console.log(this.user);
+
+			}
+		}
+
+		window.customElements.define(CreateUser.is, CreateUser);
+	</script>
+</dom-module>
