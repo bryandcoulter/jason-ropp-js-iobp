@@ -1,5 +1,5 @@
 node_modules/
 package-lock.json
 yarn-error.log
-src/auto-navbar.html
+src/nav-bar/auto-navbar.html
 polymer
