@@ -6,8 +6,8 @@
   "scripts": {
     "prestart": "ux-lint src/*.html",
     "start": "yarn run serve",
-    "build": "webpack src/js/main.js dist/ --mode='development'",
-    "serve": "serve --ssl --port 1820 src/",
+    "build": "webpack src/js/controls.js --mode='production'",
+    "serve": "serve --ssl --port 1820",
     "help": "npm-scripts-help",
     "lint": "ux-lint src/*.html"
   },
