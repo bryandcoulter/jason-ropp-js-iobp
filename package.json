@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prestart": "ux-lint src/*.html",
-    "start": "webpack-dev-server src/js/controls.js --mode='development' --port 1820 --content-base src/",
+    "start": "webpack-dev-server src/js/controls.js --mode='development' --https --port 1820 --content-base src/",
     "build": "webpack src/js/controls.js --mode='development'",
     "serve": "serve --ssl --port 1820",
     "help": "npm-scripts-help",
