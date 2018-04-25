@@ -37,12 +37,28 @@
       "These are my scripts for this project.",
       "They don't do anything yet so just chill."
     ],
-    "build": "this will build the project",
+    "build": {
+      "Desciption": "Bundles files into dist folder.",
+      "Usage": "",
+      "Long Description": [
+        "Uses webpack to bundle all files (currently just .js) into the dist folder."
+      ]
+    },
     "start": {
       "Desciption": "Will run the project on server at localhost:1820",
       "Usage": "",
       "Long Description": [
-        ""
+        "Fires the server at port 1820/src/.",
+        "Also fires the linter from the pre-start script."
+      ]
+    },
+    "lint": {
+      "Desciption": "Lints javascript and html files",
+      "Usage": "",
+      "Long Description": [
+        "Uses Banno's ux-lint package",
+        "Settings for lint are in the .editorconfig file"
+
       ]
     }
   }
