@@ -1,6 +1,7 @@
 'use strict';
 
 import { wombat } from './other';
+console.log("working");
 
 let toggleDisplay = function (elem) {
 	console.log(wombat);

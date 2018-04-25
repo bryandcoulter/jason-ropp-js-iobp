@@ -1,10 +1,19 @@
-const config = {
-	entry: './src/js/controls.js',
-	output: {
-    filename: 'bundle.js',
-    path: '/Users/jropp/Desktop/jason-ropp-js-iobp/src/dist'
-	},
-	mode: "development",
-};
+module.exports = {
+	context: __dirname + "/src",
+	entry: "./js/controls.js",
 
-module.exports = config;
+	output: {
+		filename: "bundle.js",
+		path: __dirname + "/dist",
+	},
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: 'babel-loader',
+			}
+		],
+	},
+	mode: "development"
+}
