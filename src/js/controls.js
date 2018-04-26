@@ -5,8 +5,8 @@ import { wombat } from './other';
 	console.log("working");
 })();
 
-// let button = document.getElementsByClassName('detailsButton'); // eslint-disable-line no-implicit-globals
-// button.addEventListener('click', toggleDisplay); // eslint-disable-line no-undef
+let button = document.getElementsByClassName('detailsButton'); // eslint-disable-line no-implicit-globals
+button.addEventListener('click', toggleUserDetails); // eslint-disable-line no-undef
 
 let toggleDisplay = function (elem) {
 	console.log(wombat);
