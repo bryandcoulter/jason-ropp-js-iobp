@@ -1,7 +1,12 @@
 'use strict';
 
 import { wombat } from './other';
-console.log("working");
+(function () {
+	console.log("working");
+})();
+
+// let button = document.getElementsByClassName('detailsButton'); // eslint-disable-line no-implicit-globals
+// button.addEventListener('click', toggleDisplay); // eslint-disable-line no-undef
 
 let toggleDisplay = function (elem) {
 	console.log(wombat);
@@ -15,7 +20,6 @@ let toggleDisplay = function (elem) {
 		elem.style.display = (elem.style.display === 'block') ? 'none' : 'block';
 	}
 };
-
 
 let toggleUserDetails = function(event) { // eslint-disable-line no-unused-vars
 	let userElems = Array.prototype.slice.call(event.target.parentNode.children);
