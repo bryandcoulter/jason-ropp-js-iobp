@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "ux-lint src/*.html",
     "start": "yarn run serve",
-    "serve": "serve --ssl --port 1820 src/",
+    "serve": "serve --ssl --port 1820 dist/",
     "build": "webpack",
     "help": "npm-scripts-help",
     "lint": "ux-lint src/*.html"
@@ -25,7 +25,6 @@
   "dependencies": {},
   "devDependencies": {
     "babel-loader": "^7.1.4",
-    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "npm-scripts-help": "^0.8.0",
     "serve": "^6.5.6",
