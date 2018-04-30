@@ -1,6 +1,6 @@
-let webpack = require('webpack');
+let HtmlWebpackPlugin = (require('html-webpack-plugin'))();
 let path = require('path');
-let HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
 	context: __dirname + "/src",
@@ -17,16 +17,20 @@ module.exports = {
 				use: 'babel-loader',
 			},
 			{
-				test: /\.html$/,
-				exclude: /node_modules/,
-				use: 'html-webpack-plugin',
-			}
-		],
-	},
-	mode: "development",
-	plugins: [
-		new HtmlWebpackPlugin({
-			filename: "index.html",
-		})
-	]
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
+  ]
 };
