@@ -1,36 +1,41 @@
-let HtmlWebpackPlugin = (require('html-webpack-plugin'))();
-let path = require('path');
-
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	context: __dirname + "/src",
-	entry: ["./js/controls.js"],
-	output: {
-		path: path.resolve(__dirname + "/dist"),
-		filename: "bundle.js",
-	},
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				use: 'babel-loader',
-			},
-			{
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
-      }
-    ]
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    })
-  ]
+				test: /\.html$/,
+				use: [
+					{
+						loader: "html-loader",
+						options: { minimize: true }
+					}
+				]
+			}
+		]
+	},
+	plugins: [
+		new HtmlWebPackPlugin({
+			template: "./src/index.html",
+			filename: "./index.html"
+		}),
+		new HtmlWebPackPlugin({
+			template: "./src/edit-user.html",
+			filename: "./edit-user.html"
+		}),
+		new HtmlWebPackPlugin({
+			template: "./src/new-user.html",
+			filename: "./new-user.html"
+		}),
+		new HtmlWebPackPlugin({
+			template: "./src/user-profile.html",
+			filename: "./user-profile.html"
+		}),
+		new HtmlWebPackPlugin({
+			template: "./src/users-list.html",
+			filename: "./users-list.html"
+		}),
+	]
 };
