@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prestart": "ux-lint src/*.html",
-    "start": "yarn run serve",
+    "start": "yarn build && yarn run serve",
     "serve": "serve --ssl --port 1820 dist/",
     "build": "webpack --mode development --module-bind js=babel-loader",
     "help": "npm-scripts-help",
@@ -44,7 +44,7 @@
       "Desciption": "Bundles files into dist folder.",
       "Usage": "",
       "Long Description": [
-        "Uses webpack to bundle all files (currently just .js) into the dist folder."
+        "Uses webpack to bundle all js files and minify html files into the dist folder. This is also fired on '$yarn start' before the server is initiated."
       ]
     },
     "start": {
@@ -52,7 +52,7 @@
       "Usage": "",
       "Long Description": [
         "Fires the server at port 1820/src/.",
-        "Also fires the linter from the pre-start script."
+        "Also fires the linter from the pre-start script as well as the build script that starts webpack file bundling."
       ]
     },
     "lint": {
@@ -60,7 +60,7 @@
       "Usage": "",
       "Long Description": [
         "Uses Banno's ux-lint package",
-        "Settings for lint are in the .editorconfig file"
+        "Settings for lint are in the .editorconfig file. This is also fired when you run '$yarn start'"
       ]
     }
   }
