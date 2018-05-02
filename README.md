@@ -25,7 +25,7 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 
     Webpack is used for bundling the files
 
-    The includes webpack, webpack-dev-server and webpack-cli
+    The includes webpack,  and webpack-cli
 
   ### NPM Serve
 
