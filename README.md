@@ -10,6 +10,8 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 
         `$ yarn start` then open https://localhost:1820 in the browser.
 
+        This lings, builds, and serves the project
+
     To see a list of available scripts [or a single script]: 
     
         `$ yarn run help [filter scripts]`
