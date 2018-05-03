@@ -12,7 +12,7 @@ let displayControls = (function () {
 		}
 	}
 
-	function toggleUserDetails() {
+	function toggleUserDetails(event) {
 	  let userElems = Array.prototype.slice.call(event.target.parentNode.children);
 
 		for (let elem of userElems) {
