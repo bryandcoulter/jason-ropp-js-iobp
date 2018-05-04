@@ -1,7 +1,7 @@
 // Creates entry point for css bundling
 import "./main.css";
 
-let displayControls = (function () {
+(() => {
 
 	// let button = document.getElementsByClassName('detailsButton'); // eslint-disable-line no-implicit-globals
   // button.addEventListener('click', toggleUserDetails); // eslint-disable-line no-undef
