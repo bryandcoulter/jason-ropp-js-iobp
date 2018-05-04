@@ -1,3 +1,6 @@
+// Creates entry point for css bundling
+import "./main.css";
+
 let displayControls = (function () {
 
 	// let button = document.getElementsByClassName('detailsButton'); // eslint-disable-line no-implicit-globals
