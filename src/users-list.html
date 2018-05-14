@@ -5,8 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Users List</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="main.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -32,7 +31,7 @@
                 <h3 class="email">
                   <a href="dummy@email.com">dummy@email.com</a>
                 </h3>
-                <button type="button" onclick="toggleUserDetails(event)">Hide Details</button>
+                <button class="detailsButton" type="button" onclick="toggleUserDetails(event)">Hide Details</button>
             </hgroup>
         </li>
         <li>
@@ -43,7 +42,7 @@
                 <h3 class="email">
                     <a href="dummy@email.com">dummy@email.com</a>
                 </h3>
-                <button type="button" onclick="toggleUserDetails(event)">Hide Details</button>
+                <button class="detailsButton" type="button" onclick="toggleUserDetails(event)">Hide Details</button>
             </hgroup>
         </li>
         <li>
@@ -54,37 +53,9 @@
                 <h3 class="email">
                     <a href="dummy@email.com">dummy@email.com</a>
                 </h3>
-                <button type="button" onclick="toggleUserDetails(event)">Hide Details</button>
+                <button class="detailsButton" type="button" onclick="toggleUserDetails(event)">Hide Details</button>
             </hgroup>
         </li>
     </ul>
 </body>
-<script>
-  'use strict';
-
-  let toggleDisplay = function(elem) {
-    // Bug Fix: The first instance on page load
-    // does not register the display block style,
-    // even when added explicitly in main.css.
-    if (elem.style.display === '') {
-      elem.style.display = 'none';
-
-    } else {
-      elem.style.display = (elem.style.display === 'block') ? 'none' : 'block';
-    }
-  };
-
-  let toggleUserDetails = function(event) { // eslint-disable-line no-unused-vars
-    let userElems = Array.prototype.slice.call(event.target.parentNode.children);
-
-    for (let i = 0; i < userElems.length; i++) {
-      let elem = userElems[i];
-
-      if (elem.nodeName === 'H3') {
-        toggleDisplay(elem);
-      }
-    }
-  };
-
-  </script>
 </html>
