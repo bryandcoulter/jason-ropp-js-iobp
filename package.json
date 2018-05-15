@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Jropp/jason-ropp-js-iobp",
   "dependencies": {},
   "devDependencies": {
-    "@banno/polymer": "^2.3.1",
+    "@banno/polymer": "^2.3.1-html-imports",
     "npm-scripts-help": "^0.8.0",
     "serve": "^6.5.5",
     "ux-lint": "^1.8.0"

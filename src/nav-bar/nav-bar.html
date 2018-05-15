@@ -2,8 +2,8 @@
 Basic navigation for site
 -->
 <!-- <link rel="import" href="../../node_modules/@banno/polymer/polymer.js"> -->
-<script src="../../node_modules/@banno/polymer/polymer.js"></script>
-<script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="./node_modules/@banno/polymer/polymer.html"></link>
+<script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
 <link rel="stylesheet" href="../main.css">
 
 <dom-module id="nav-bar">
@@ -23,7 +23,7 @@ Basic navigation for site
 
   </template>
 
-  <script src="nav-bar.js">
+  <script>
     class NavBar extends Polymer.Element {
       static get is() { return 'nav-bar'; }
     }
