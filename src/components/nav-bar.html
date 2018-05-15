@@ -2,10 +2,8 @@
 Basic navigation for site
 -->
 <!-- <link rel="import" href="../../node_modules/@banno/polymer/polymer.js"> -->
-<link rel="import" href="./node_modules/@banno/polymer/polymer.html"></link>
-<script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="./../../node_modules/@banno/polymer/polymer.html">
 <link rel="stylesheet" href="../main.css">
-
 <dom-module id="nav-bar">
   <template>
     <style include="shared-styles">
@@ -14,15 +12,13 @@ Basic navigation for site
         padding: 10px;
       }
     </style>
-    <nav>
-			<a href="/jason-ropp-js-iobp/src/new-user/new-user.html">Edit User</a>
-			<a href="/jason-ropp-js-iobp/src/new-user/new-user.html">Create User</a>
-			<a href="/jason-ropp-js-iobp/src/new-user/new-user.html">User List</a>
-			<a href="/jason-ropp-js-iobp/src/new-user/new-user.html">User Profile</a>
-    </nav>
-
+      <nav>
+        <a href="src/components/edit-user.html">Edit User</a>
+        <a href="src/components/create-user.html">Create User</a>
+        <a href="src/components/user-list.html">User List</a>
+        <a href="src/components/user-profile.html">User Profile</a>
+      </nav>
   </template>
-
   <script>
     class NavBar extends Polymer.Element {
       static get is() { return 'nav-bar'; }
