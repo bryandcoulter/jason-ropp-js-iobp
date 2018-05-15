@@ -1,7 +1,8 @@
 <!--
 Basic navigation for site
 -->
-<link rel="import" href="../../node_modules/@banno/polymer/polymer.js">
+<!-- <link rel="import" href="../../node_modules/@banno/polymer/polymer.js"> -->
+<script src="../../node_modules/@banno/polymer/polymer.js"></script>
 <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
 <link rel="stylesheet" href="../main.css">
 
@@ -22,7 +23,7 @@ Basic navigation for site
 
   </template>
 
-  <script>
+  <script src="nav-bar.js">
     class NavBar extends Polymer.Element {
       static get is() { return 'nav-bar'; }
     }
