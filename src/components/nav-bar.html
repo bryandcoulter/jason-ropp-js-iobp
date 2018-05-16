@@ -1,36 +1,33 @@
-<!--
-Basic navigation for site
--->
-
 <link rel="import" href="./polymer.html">
 <link rel="stylesheet" href="./main.css">
 <dom-module id="nav-bar">
-	<template>
-		<style include="shared-styles">
-			:host {
-				display: block;
-				padding: 10px;
-			}
-		</style>
-		<nav>
-			<a href="edit-user.html">Edit User</a>
-			<a href="new-user.html">Create User</a>
-			<a href="users-list.html">User List</a>
-			<a href="user-profile.html">User Profile</a>
-		</nav>
-	</template>
-	<script>
-		class NavBar extends Polymer.Element {
-			static get is() { return 'nav-bar'; }
-			static get properties() {
-				return {
-					currentPage: {
-						type: String
-					}
-				}
-			}
-		}
+<template>
+<style>
+	:host {
+		display: block;
+		padding: 10px;
+	}
+</style>
+<nav>
+  <a href="edit-user.html">Edit User</a>
+  <a href="new-user.html">Create User</a>
+  <a href="users-list.html">User List</a>
+  <a href="user-profile.html">User Profile</a>
+</nav>
+</template>
+<script>
+  'use strict';
+  class NavBar extends Polymer.Element {
+    static get is() { return 'nav-bar'; }
+    static get properties() {
+      return {
+        currentPage: {
+          type: String
+        }
+      };
+    }
+  }
 
-		window.customElements.define(NavBar.is, NavBar);
-	</script>
+  window.customElements.define(NavBar.is, NavBar);
+</script>
 </dom-module>
