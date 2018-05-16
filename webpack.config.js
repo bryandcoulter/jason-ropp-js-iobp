@@ -26,20 +26,24 @@ module.exports = {
 			filename: "./index.html"
 		}),
 		new HtmlWebPackPlugin({
-			template: "./src/edit-user.html",
+			template: "./src/components/edit-user.html",
 			filename: "./edit-user.html"
 		}),
 		new HtmlWebPackPlugin({
-			template: "./src/new-user.html",
+			template: "./src/components/new-user.html",
 			filename: "./new-user.html"
 		}),
 		new HtmlWebPackPlugin({
-			template: "./src/user-profile.html",
+			template: "./src/components/user-profile.html",
 			filename: "./user-profile.html"
 		}),
 		new HtmlWebPackPlugin({
-			template: "./src/users-list.html",
+			template: "./src/components/users-list.html",
 			filename: "./users-list.html"
+		}),
+		new HtmlWebPackPlugin({
+			template: "./src/components/nav-bar.html",
+			filename: "./nav-bar.html"
 		}),
 	]
 };
