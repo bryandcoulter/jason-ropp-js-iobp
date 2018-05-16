@@ -31,11 +31,9 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 
   The bundling and serving happens together on `$ yarn start` or `$ yarn build`
 
-  The includes webpack, and webpack-cli.
-
   #### Note
 
-  You will not see the bundled folder locally. 
+  You will not see the bundled folder locally when using webpack-dev-server. 
 
 ### UX-Lint
 
