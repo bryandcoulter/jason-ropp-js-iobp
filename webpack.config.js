@@ -45,5 +45,9 @@ module.exports = {
 			template: "./src/components/nav-bar.html",
 			filename: "./nav-bar.html"
 		}),
+		new HtmlWebPackPlugin({
+			template: "./node_modules/@banno/polymer/polymer.html",
+			filename: "./polymer.html"
+		}),
 	]
 };
