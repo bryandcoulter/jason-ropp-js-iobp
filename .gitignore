@@ -3,3 +3,4 @@ package-lock.json
 yarn-error.log
 src/nav-bar/auto-navbar.html
 polymer
+dist/
