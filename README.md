@@ -25,15 +25,17 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 
 ### @Banno/Polymer
 
-### Webpack
+### Webpack-Dev-Server
 
-  Webpack is used for bundling the files
+  Webpack-dev-server wraps around webpack, bundling and serving the files. 
 
-  The includes webpack,  and webpack-cli
+  The bundling and serving happens together on `$ yarn start` or `$ yarn build`
 
-### NPM Serve
+  The includes webpack, and webpack-cli.
 
-  Current server fired by `$ yarn start` is npm serve
+  #### Note
+
+  You will not see the bundled folder locally. 
 
 ### UX-Lint
 

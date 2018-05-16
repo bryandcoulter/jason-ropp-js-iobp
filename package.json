@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prestart": "ux-lint src/*.html",
-    "start": "yarn build && yarn run serve",
-    "serve": "serve --ssl --port 1820 dist/",
-    "build": "webpack-dev-server --mode development --module-bind js=babel-loader",
+    "start": "yarn build",
+    "build": "webpack-dev-server --https --port 1820 --mode development --module-bind js=babel-loader",
     "help": "npm-scripts-help",
     "lint": "ux-lint src/components/*.html"
   },
@@ -43,17 +42,17 @@
       "They don't do anything yet so just chill."
     ],
     "build": {
-      "Desciption": "Bundles files into dist folder.",
+      "Desciption": "Bundles files into dist folder and starts serving the project.",
       "Usage": "",
       "Long Description": [
-        "Uses webpack to bundle all js files and minify html files into the dist folder. This is also fired on '$yarn start' before the server is initiated."
+        "Uses webpack-dev-server to bundle all js files and minify html files into the dist folder. This is also fired on '$yarn start' before the server is initiated."
       ]
     },
     "start": {
-      "Desciption": "Will run the project on server at localhost:1820",
+      "Desciption": "Builds and serves the project.",
       "Usage": "",
       "Long Description": [
-        "Fires the server at port 1820/src/.",
+        "Fires the webpack-dev-server which bundles and fires the server at port 1820.",
         "Also fires the linter from the pre-start script as well as the build script that starts webpack file bundling."
       ]
     },
