@@ -7,7 +7,7 @@
     "prestart": "ux-lint src/*.html",
     "start": "yarn build && yarn run serve",
     "serve": "serve --ssl --port 1820 dist/",
-    "build": "webpack --mode development --module-bind js=babel-loader",
+    "build": "webpack-dev-server --mode development --module-bind js=babel-loader",
     "help": "npm-scripts-help",
     "lint": "ux-lint src/components/*.html"
   },
