@@ -24,14 +24,11 @@
   "homepage": "https://github.com/Jropp/jason-ropp-js-iobp",
   "dependencies": {},
   "devDependencies": {
-<<<<<<< HEAD
     "@banno/polymer": "2.3.1-html-imports",
-=======
     "babel-loader": "^7.1.4",
     "css-loader": "^0.28.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
->>>>>>> master
     "npm-scripts-help": "^0.8.0",
     "serve": "^6.5.6",
     "style-loader": "^0.21.0",
