@@ -1,5 +1,10 @@
 // Creates entry point for css bundling
 import "./main.css";
+import "./components/edit-user.html"
+import "./components/new-user.html"
+import "./components/user-profile.html"
+import "./components/users-list.html"
+import "./components/nav-bar.html"
 
 (() => {
 

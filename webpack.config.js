@@ -10,9 +10,14 @@ module.exports = {
 				use: [
 					{
 						loader: "html-loader",
-						options: { minimize: true }
+						options: {
+							name: '[name].[ext]',
+							outputPath: "/",
+							minimize: true
+						}
 					}
-				]
+				],
+				exclude: path.resolve(__dirname, 'src/index.html')
 			},
 			{
 				test: /\.css$/,
