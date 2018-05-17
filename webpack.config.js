@@ -29,30 +29,30 @@ module.exports = {
 		new HtmlWebPackPlugin({
 			template: "./src/index.html",
 			filename: "./index.html"
-		}),
-		new HtmlWebPackPlugin({
-			template: "./src/components/edit-user.html",
-			filename: "./edit-user.html"
-		}),
-		new HtmlWebPackPlugin({
-			template: "./src/components/new-user.html",
-			filename: "./new-user.html"
-		}),
-		new HtmlWebPackPlugin({
-			template: "./src/components/user-profile.html",
-			filename: "./user-profile.html"
-		}),
-		new HtmlWebPackPlugin({
-			template: "./src/components/users-list.html",
-			filename: "./users-list.html"
-		}),
-		new HtmlWebPackPlugin({
-			template: "./src/components/nav-bar.html",
-			filename: "./nav-bar.html"
-		}),
-		new HtmlWebPackPlugin({
-			template: "./node_modules/@banno/polymer/polymer.html",
-			filename: "./polymer.html"
-		}),
+		})
+		// new HtmlWebPackPlugin({
+		// 	template: "./src/components/edit-user.html",
+		// 	filename: "./edit-user.html"
+		// }),
+		// new HtmlWebPackPlugin({
+		// 	template: "./src/components/new-user.html",
+		// 	filename: "./new-user.html"
+		// }),
+		// new HtmlWebPackPlugin({
+		// 	template: "./src/components/user-profile.html",
+		// 	filename: "./user-profile.html"
+		// }),
+		// new HtmlWebPackPlugin({
+		// 	template: "./src/components/users-list.html",
+		// 	filename: "./users-list.html"
+		// }),
+		// new HtmlWebPackPlugin({
+		// 	template: "./src/components/nav-bar.html",
+		// 	filename: "./nav-bar.html"
+		// }),
+		// new HtmlWebPackPlugin({
+		// 	template: "./node_modules/@banno/polymer/polymer.html",
+		// 	filename: "./polymer.html"
+		// }),
 	]
 };
