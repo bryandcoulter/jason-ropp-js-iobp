@@ -20,6 +20,10 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 
         `$ yarn lint`
 
+    To build a local example of the bundled file structure that webpack-dev-server uses
+
+        `$ yarn build`
+
 
 ## dependencies
 
