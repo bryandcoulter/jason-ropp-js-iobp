@@ -31,8 +31,9 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebPackPlugin({
-			template: "./src/index.html",
-			filename: "./index.html"
+			hash: true,
+			template: "src/index.html",
+			filename: "index.html",
 		})
 		// new HtmlWebPackPlugin({
 		// 	template: "./src/components/edit-user.html",
@@ -57,6 +58,6 @@ module.exports = {
 		// new HtmlWebPackPlugin({
 		// 	template: "./node_modules/@banno/polymer/polymer.html",
 		// 	filename: "./polymer.html"
-		// }),
+		// })
 	]
 };

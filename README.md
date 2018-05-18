@@ -29,11 +29,17 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 
   Webpack-dev-server wraps around webpack, bundling and serving the files. 
 
-  The bundling and serving happens together on `$ yarn start` or `$ yarn build`
+  The bundling and serving happens together on `$ yarn start`
 
-  #### Note
+  #### To Build File Structure Locally
 
   You will not see the bundled folder locally when using webpack-dev-server. 
+
+  If you want to bundle the files locally to see how they will be organized in webpack-dev-server, run `$ yarn build` which fires `webpack` and builds the file locally
+
+  ##### Note
+
+  The locally built files are not the exact files that are served. This is just an example of the file organization that webpack-dev-server builds on the server.
 
 ### UX-Lint
 
