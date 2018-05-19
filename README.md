@@ -39,9 +39,14 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 
   You will not see the bundled folder locally when using webpack-dev-server. 
 
-  If you want to bundle the files locally to see how they will be organized in webpack-dev-server, run `$ yarn build` which fires `webpack` and builds the file locally
+  If you want to bundle the files locally to see how they will be organized in webpack-dev-server, run `$ yarn build` which fires `webpack` and builds the file locally. 
+  
+  To view the bundled files from the server:
+  ```
+  localhost:1820/localhost:8080/webpack-dev-server
+  ```
 
-  ##### Note
+  ##### Notes
 
   The locally built files are not the exact files that are served. This is just an example of the file organization that webpack-dev-server builds on the server.
 

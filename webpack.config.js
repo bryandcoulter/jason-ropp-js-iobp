@@ -13,7 +13,8 @@ module.exports = {
 						options: {
 							name: '[name].[ext]',
 							outputPath: "/",
-							minimize: true
+							minimize: true,
+							attrs: ['link:href', 'script:src']
 						}
 					}
 				],
@@ -26,14 +27,14 @@ module.exports = {
 			{
 				test: /\.js$/,
 				use: 'babel-loader'
-			}
+			},
 		]
 	},
 	plugins: [
 		new HtmlWebPackPlugin({
 			hash: true,
 			template: "src/index.html",
-			filename: "index.html",
+			filename: "index.html"
 		})
 		// new HtmlWebPackPlugin({
 		// 	template: "./src/components/edit-user.html",
