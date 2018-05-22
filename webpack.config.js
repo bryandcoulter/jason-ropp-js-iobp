@@ -3,8 +3,21 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+	entry: './src/index.js',
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'main.js'
+	},
 	module: {
 		rules: [
+			{
+				test: /\.js$/,
+				use: 'babel-loader'
+			},
+			{
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader']
+			},
 			{
 				test: /\.html$/,
 				use: [
@@ -14,25 +27,15 @@ module.exports = {
 							name: '[name].[ext]',
 							outputPath: "/",
 							minimize: true,
-							attrs: ['link:href', 'script:src']
 						}
 					}
 				],
 				exclude: path.resolve(__dirname, 'src/index.html')
-			},
-			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader']
-			},
-			{
-				test: /\.js$/,
-				use: 'babel-loader'
-			},
+			}
 		]
 	},
 	plugins: [
 		new HtmlWebPackPlugin({
-			hash: true,
 			template: "src/index.html",
 			filename: "index.html"
 		})
