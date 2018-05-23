@@ -1,6 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
@@ -30,15 +33,22 @@ module.exports = {
 						}
 					}
 				],
-				exclude: path.resolve(__dirname, 'src/index.html')
 			}
 		]
 	},
 	plugins: [
-		new HtmlWebPackPlugin({
-			template: "src/index.html",
-			filename: "index.html"
-		})
+		new CleanWebpackPlugin('dist'),
+		new CopyWebpackPlugin([{from: 'src/components/*', to: '[name].[ext]'},
+			{ from: 'src/index.html', to: '[name].[ext]' },
+			{ from: 'node_modules/@banno/polymer/polymer.html', to: '[name].[ext]' },
+		]),
+
+		// Does the same thing as copywebpackplugin but for webpack-dev-server
+		new WriteFilePlugin(),
+		// new HtmlWebPackPlugin({
+		// 	template: "src/index.html",
+		// 	filename: "index.html"
+		// })
 		// new HtmlWebPackPlugin({
 		// 	template: "./src/components/edit-user.html",
 		// 	filename: "./edit-user.html"
@@ -63,5 +73,10 @@ module.exports = {
 		// 	template: "./node_modules/@banno/polymer/polymer.html",
 		// 	filename: "./polymer.html"
 		// })
-	]
+	],
+
+	// Anything that wp doesn't generate on its own gets served out of dist
+	devServer: {
+		contentBase: 'dist'
+	}
 };

@@ -1,5 +1,6 @@
 // Creates entry point for css bundling
 import "./main.css";
+import "./index.html"
 import "./components/edit-user.html"
 import "./components/new-user.html"
 import "./components/user-profile.html"
