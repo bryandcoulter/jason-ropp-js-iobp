@@ -38,41 +38,14 @@ module.exports = {
 	},
 	plugins: [
 		new CleanWebpackPlugin('dist'),
-		new CopyWebpackPlugin([{from: 'src/components/*', to: '[name].[ext]'},
+		new CopyWebpackPlugin([
+			{ from: 'src/components/*', to: '[name].[ext]' },
+			{ from: 'src/pages/*', to: '[name].[ext]' },
 			{ from: 'src/index.html', to: '[name].[ext]' },
 			{ from: 'node_modules/@banno/polymer/polymer.html', to: '[name].[ext]' },
 		]),
-
 		// Does the same thing as copywebpackplugin but for webpack-dev-server
 		new WriteFilePlugin(),
-		// new HtmlWebPackPlugin({
-		// 	template: "src/index.html",
-		// 	filename: "index.html"
-		// })
-		// new HtmlWebPackPlugin({
-		// 	template: "./src/components/edit-user.html",
-		// 	filename: "./edit-user.html"
-		// }),
-		// new HtmlWebPackPlugin({
-		// 	template: "./src/components/new-user.html",
-		// 	filename: "./new-user.html"
-		// }),
-		// new HtmlWebPackPlugin({
-		// 	template: "./src/components/user-profile.html",
-		// 	filename: "./user-profile.html"
-		// }),
-		// new HtmlWebPackPlugin({
-		// 	template: "./src/components/users-list.html",
-		// 	filename: "./users-list.html"
-		// }),
-		// new HtmlWebPackPlugin({
-		// 	template: "./src/components/nav-bar.html",
-		// 	filename: "./nav-bar.html"
-		// }),
-		// new HtmlWebPackPlugin({
-		// 	template: "./node_modules/@banno/polymer/polymer.html",
-		// 	filename: "./polymer.html"
-		// })
 	],
 
 	// Anything that wp doesn't generate on its own gets served out of dist

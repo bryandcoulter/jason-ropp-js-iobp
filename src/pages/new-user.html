@@ -15,17 +15,20 @@
     </nav>
   </header>
   <h1>Create New User:</h1>
-  <form>
-    <label>Name:
-    <input type="text">
+  <form autocomplete="on">
+    <label>First:
+    <input type="text" autocomplete="given-name">
+    </label>
+    <label>Last:
+    <input type="text" autocomplete="family-name">
     </label>
     <br>
     <label>Phone:
-    <input type="text">
+    <input type="text" autocomplete="tel">
     </label>
     <br>
     <label>Email:
-    <input type="text">
+    <input type="email" autocomplete="email">
     </label>
     <br>
     <button type="submit">Submit</button>
