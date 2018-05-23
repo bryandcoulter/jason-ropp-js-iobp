@@ -19,7 +19,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: ['style-loader', 'css-loader']
+				use:  ['style-loader', 'css-loader']
 			},
 			{
 				test: /\.html$/,
@@ -43,6 +43,7 @@ module.exports = {
 			{ from: 'src/pages/*', to: '[name].[ext]' },
 			{ from: 'src/index.html', to: '[name].[ext]' },
 			{ from: 'node_modules/@banno/polymer/polymer.html', to: '[name].[ext]' },
+			{ from: 'src/styles.css', to: '[name].[ext]' },
 		]),
 		// Does the same thing as copywebpackplugin but for webpack-dev-server
 		new WriteFilePlugin(),
