@@ -42,9 +42,9 @@ This app allows you to create and edit user profiles, each of which have an ID, 
   If you want to bundle the files locally to see how they will be organized in webpack-dev-server, run `$ yarn build` which fires `webpack` and builds the file locally. 
   
   To view the bundled files from the server:
-  ```
-  localhost:1820/localhost:8080/webpack-dev-server
-  ```
+
+  `localhost:1820/localhost:8080/webpack-dev-server` in your browser.
+  
 
   ##### Notes
 

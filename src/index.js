@@ -25,9 +25,5 @@
 
 	window.toggleUserDetails = toggleUserDetails;
 
-	return {
-		toggleDisplay: toggleDisplay,
-		toggleUserDetails: toggleUserDetails
-	}
 
 })();

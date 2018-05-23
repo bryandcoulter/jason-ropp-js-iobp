@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./styles.css">
   <link rel="import" href="./nav-bar.html">
+  <script src="./main.js"></script>
 </head>
 <body>
   <header>
@@ -19,7 +20,7 @@
   </h1>
   <ul>
     <li>
-    <hgroup class="user-card">
+    <hgroup class="default-card">
     <h2 class="name">Jason Ropp</h2>
     <h3 class="id">ID: Wombat</h3>
     <h3 class="phone">541-615-9999</h3>
@@ -34,27 +35,8 @@
 <script>
   'use strict';
 
-  let toggleDisplay = function(elem) {
-    // Bug Fix: The first instance on page load
-    // does not register the display block style,
-    // even when added explicitly in main.css.
-    if (elem.style.display === '') {
-      elem.style.display = 'none';
-    } else {
-      elem.style.display = (elem.style.display === 'block') ? 'none' : 'block';
-    }
-  };
-
   let toggleUserDetails = function(event) { // eslint-disable-line no-unused-vars
-    let userElems = Array.prototype.slice.call(event.target.parentNode.children);
-
-    for (let i = 0; i < userElems.length; i++) {
-      let elem = userElems[i];
-
-      if (elem.nodeName === 'H3') {
-        toggleDisplay(elem);
-      }
-    }
+    window.toggleUserDetails(event);
   };
 
 </script>
