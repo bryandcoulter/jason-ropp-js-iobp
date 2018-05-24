@@ -4,30 +4,51 @@
   <template>
     <style>
       :host {
-	      display: block;
-	      padding: 10px;
+        display: block;
+        padding: 10px;
       }
 
       nav {
-	      background-color: gainsboro;
-	      width: 95%;
-	      padding: 15px;
-	      border-radius: 5px;
-	      box-shadow: 3px 3px 2px lightgrey;
+        background-color: gainsboro;
+        width: 95%;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 3px 3px 2px lightgrey;
       }
     </style>
-    <nav class="default-card">
-      <a href="index.html">Home</a>
-      <a href="edit-user.html">Edit User</a>
-      <a href="new-user.html">Create User</a>
-      <a href="users-list.html">User List</a>
-      <a href="user-profile.html">User Profile</a>
-    </nav>
+    <template is="dom-repeat" items="[[pages]]">
+      <div on-click="setRoute" value="[[item.name]]">[[item.name]]</div>
+    </template>
   </template>
   <script>
     'use strict';
     class NavBar extends Polymer.Element {
       static get is() { return 'nav-bar'; }
+      static get properties() {
+        return {
+          pages: {
+            type: Array,
+            value: [
+              { name: "Home", path: "index.html" },
+              { name: "Create User", path: "new-user.html" },
+              { name: "User Profile", path: "user-profile.html" },
+              { name: "User List", path: "users-list.html" },
+              { name: "Edit User", path: "edit-user.html" }
+            ]
+          }
+        };
+      }
+      setRoute(event) {
+        let pageName = event.target.value;
+
+        for (const page of this.pages) {
+          if (pageName == page.name) {
+            history.pushState({}, 'Wombat', page.path);
+            location.reload();
+          }
+        }
+
+      }
     }
 
     window.customElements.define(NavBar.is, NavBar);
