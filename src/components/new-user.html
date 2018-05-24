@@ -1,0 +1,129 @@
+<link rel="import" href="polymer.html">
+<link rel="stylesheet" href="./styles.css">
+<dom-module id="new-user">
+	<template>
+		<style>
+			:host {
+				display: block;
+				padding: 10px;
+			}
+
+			.contact-info-box {}
+
+			form {
+				margin-top: 20px;
+				width: 140px;
+			}
+
+			.form-box {
+				padding: 10px;
+			}
+
+			.form-box input,
+			.form-button {
+				display: block;
+				margin: 10px;
+				border-radius: 3px;
+			}
+
+			.form-button {
+				width: 129px;
+				display: block;
+				margin: 10px;
+				margin-left: 20px;
+			}
+
+			.heading {
+				position: relative;
+				left: -10px;
+				margin: 10px;
+			}
+
+			.submit-button-box {
+				width: fit-content;
+				border-radius: 3px;
+			}
+
+			.contact-info-header {
+				font-size: 12px;
+				font-weight: bold;
+				margin: 5px;
+				margin-left: 10px;
+				margin-right: 10px;
+				border-top: 1px solid rgb(94, 94, 94);
+				border-bottom: 1px solid rgb(94, 94, 94);
+				text-align: center;
+
+			}
+
+			.user-name-box,
+			.contact-info-box {
+				border: solid .5px rgb(92, 92, 92);
+				box-shadow: 1px 1px 4px #dadada;
+				background-color: #B1A296;
+				padding: 10px;
+				width: fit-content;
+				border-radius: 3px;
+			}
+
+			.user-name-box {
+				margin-top: -10px;
+				margin-bottom: 5px;
+			}
+		</style>
+		<div class="form-box">
+			<div class="heading">Add New User:</div>
+			<form autocomplete="on" class="default-card">
+				<div class="user-name-box">
+					<div class="contact-info-header">Name:</div>
+					<input id="id" type="text" class="input" autocomplete="username" placeholder="User Id">
+					<input id="fName" type="text" class="input" autocomplete="given-name" placeholder="First Name">
+					<input id="lName" type="text" class="input" autocomplete="family-name" placeholder="Last Name">
+				</div>
+				<div class="contact-info-box">
+					<div class="contact-info-header">Contact Info:</div>
+					<input id="email" type="email" class="input" autocomplete="email" placeholder="Email">
+					<input id="phone" type="tel" class="input" autocomplete="tel" placeholder="Phone">
+				</div>
+				<div class="submit-button-box"></div>
+				<button class="form-button" on-click="createUser" type="submit">Submit</button>
+		</div>
+		</form>
+		</div>
+	</template>
+	<script>
+		'use strict';
+		class NewUser extends Polymer.Element {
+			static get is() { return 'new-user'; }
+			static get properties() {
+				return {
+
+				};
+			}
+			createUser(e) {
+				e.preventDefault();
+				this.saveUser({
+					first: this.$.fName.value,
+					last: this.$.lName.value,
+					phone: this.$.phone.value,
+					email: this.$.email.value,
+					id: this.$.id.value
+				});
+			}
+			saveUser(user) {
+				let users;
+				if (localStorage.getItem('onboardProjectUsers')) {
+					users = JSON.parse(localStorage.getItem('onboardProjectUsers'));
+					console.log(users);
+					users.push(user);
+					localStorage.setItem('onboardProjectUsers', JSON.stringify(users));
+				} else {
+					users = [user];
+					localStorage.setItem('onboardProjectUsers', JSON.stringify(users));
+				}
+			}
+		}
+
+		customElements.define(NewUser.is, NewUser);
+	</script>
+</dom-module>
