@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./styles.css">
   <link rel="import" href="./nav-bar.html">
-  <script src="./main.js"></script>
+  <link rel="import" href="./user-list.html">
 </head>
 <body>
   <header>
@@ -18,26 +18,6 @@
   <h1>
   Users:
   </h1>
-  <ul>
-    <li>
-    <hgroup class="default-card">
-    <h2 class="name">Jason Ropp</h2>
-    <h3 class="id">ID: Wombat</h3>
-    <h3 class="phone">541-615-9999</h3>
-    <h3 class="email">
-    <a href="dummy@email.com">dummy@email.com</a>
-    </h3>
-    <button type="button" onclick="toggleUserDetails(event)">Hide Details</button>
-    </hgroup>
-    </li>
-  </ul>
+  <user-list></user-list>
 </body>
-<script>
-  'use strict';
-
-  let toggleUserDetails = function(event) { // eslint-disable-line no-unused-vars
-    window.toggleUserDetails(event);
-  };
-
-</script>
 </html>
