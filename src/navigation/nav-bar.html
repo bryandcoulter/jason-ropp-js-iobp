@@ -54,7 +54,7 @@
 
         for (let page of this.pages) {
           if (pageName === page.name) {
-            history.pushState({}, 'Wombat', page.path);
+            history.pushState({}, page.name, page.path);
             location.reload();
           }
         }
