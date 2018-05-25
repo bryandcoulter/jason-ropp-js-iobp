@@ -29,7 +29,7 @@
 
       .default-card:hover>h3 {
         opacity: 1;
-        transition: opacity 1.3s;
+        transition: opacity 1.4s;
       }
 
       hgroup>h3 {
@@ -41,10 +41,10 @@
         color: black;
         border: none;
       }
-		</style>
-		<template is="dom-if" if="[[userToDisplay]]">
-			<h2>There are currently no users in our system.</h2>
-		</template>
+    </style>
+    <template is="dom-if" if="[[!userToDisplay]]">
+      <h2>There are currently no users in our system.</h2>
+    </template>
     <template is="dom-repeat" items="[[users]]">
       <hgroup on-click="selectUserCard" class="default-card">
         <h2 class="name">[[item.first]] [[item.last]]</h2>
@@ -64,29 +64,26 @@
       static get properties() {
         return {
           users: {
-						type: Array
+            type: Array
           },
           selectedUser: {
             type: Object
-					},
-					userToDisplay: {
-						type: Boolean,
-						value: true
-					}
+          },
+          userToDisplay: {
+            type: Boolean,
+            value: true
+          }
         };
-			}
-			ready(){
-				super.ready();
-				let visibility = (this.users === undefined) ? false : true;
-				this.set('userToDisplay', visibility);
-
-
-			}
+      }
+      ready() {
+        super.ready();
+        this.set('users', JSON.parse(localStorage.getItem('onboardProjectUsers')));
+      }
       connectedCallback() {
         super.connectedCallback();
-        let users = localStorage.getItem('onboardProjectUsers');
-        this.set('users', JSON.parse(users));
-
+        if (!this.users) {
+          this.set('userToDisplay', false);
+        }
       }
       selectUserCard() {
         history.pushState({}, 'User Profile', 'user-profile.html');
