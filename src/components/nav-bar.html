@@ -29,11 +29,11 @@
           pages: {
             type: Array,
             value: [
-              { name: "Home", path: "index.html" },
-              { name: "Create User", path: "new-user.html" },
-              { name: "User Profile", path: "user-profile.html" },
-              { name: "User List", path: "users-list.html" },
-              { name: "Edit User", path: "edit-user.html" }
+              { name: 'Home', path: 'index.html' },
+              { name: 'Create User', path: 'new-user.html' },
+              { name: 'User Profile', path: 'user-profile.html' },
+              { name: 'User List', path: 'users-list.html' },
+              { name: 'Edit User', path: 'edit-user.html' }
             ]
           }
         };
@@ -41,8 +41,8 @@
       setRoute(event) {
         let pageName = event.target.value;
 
-        for (const page of this.pages) {
-          if (pageName == page.name) {
+        for (let page of this.pages) {
+          if (pageName === page.name) {
             history.pushState({}, 'Wombat', page.path);
             location.reload();
           }
