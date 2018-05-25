@@ -27,8 +27,6 @@ Under penalty of public shaming, I avow that I:
 - [ ] Reviewed the diff to look for typos, whitespace errors, and console.log() statements
 - [ ] Verified that there are no compiler or linter errors or warnings
 - [ ] Verified the build in production(optimized) mode
-- [ ] Ran the build & tests locally
-- [ ] Added or updated tests (unit / E2E)
 - [ ] Updated the docs, if necessary
 - [ ] Included the appropriate labels
 - [ ] Referenced applicable issues (i.e. Closes #XXXX, Fixes #XXXX)
