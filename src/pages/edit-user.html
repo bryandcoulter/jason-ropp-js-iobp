@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Edit User</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./styles.css">
   <link rel="import" href="./nav-bar.html">
 </head>
+<style>
+  .default-card {
+    background-color: gainsboro;
+    width: fit-content;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 2px lightgrey;
+  }
+</style>
+
 <body>
   <header>
     <nav>
@@ -17,15 +28,16 @@
   <h1>Edit User:</h1>
   <form class="default-card">
     <label>First:
-    <input type="text" placeholder="First Name">
+      <input type="text" placeholder="First Name">
     </label>
     <label>Last:
-    <input type="text" placeholder="Last Name">
+      <input type="text" placeholder="Last Name">
     </label>
     <label>Phone:
-    <input type="text" placeholder="Phone">
+      <input type="text" placeholder="Phone">
     </label>
     <button>Submit</button>
   </form>
 </body>
+
 </html>
