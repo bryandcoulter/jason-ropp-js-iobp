@@ -18,7 +18,7 @@
       }
 
       .default-card:hover {
-        height: 200px;
+        height: 230px;
         transition: height .4s ease-out;
       }
 
@@ -49,6 +49,7 @@
       <hgroup on-click="selectUserCard" class="default-card">
         <h2 class="name">[[item.first]] [[item.last]]</h2>
         <h3 class="id">[[item.id]]</h3>
+        <h3 class="department">[[item.department]]</h3>
         <h3 class="phone">[[item.phone]]</h3>
         <h3 class="email">
           <a href="dummy@email.com">[[item.email]]</a>

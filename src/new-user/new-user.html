@@ -119,7 +119,7 @@
           users = [user];
           localStorage.setItem('onboardProjectUsers', JSON.stringify(users));
         }
-				this.emptyNewUserForm();
+        this.emptyNewUserForm();
       }
 
       // Makes sure all fields are filled
@@ -143,12 +143,12 @@
         }
       }
 
-			emptyNewUserForm(){
-				let fields = this.$.newUserFields.children;
-				for (let field of fields) {
-          field.value = "";
+      emptyNewUserForm() {
+        let fields = this.$.newUserFields.children;
+        for (let field of fields) {
+          field.value = '';
         }
-			}
+      }
     }
 
     customElements.define(NewUser.is, NewUser);
