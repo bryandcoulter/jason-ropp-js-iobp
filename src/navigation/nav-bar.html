@@ -9,16 +9,27 @@
       }
 
       nav {
+        display: grid;
+        grid-template-columns: 20fr 20fr 20fr 20fr 20fr;
         background-color: gainsboro;
-        width: 95%;
-        padding: 15px;
-        border-radius: 5px;
+        width: 100%;
+        padding: 5px;
         box-shadow: 3px 3px 2px lightgrey;
       }
+
+      .nav-link {
+        text-align: center;
+      }
+      .nav-link:hover {
+        font-weight: bold;
+        color: red;
+      }
     </style>
-    <template is="dom-repeat" items="[[pages]]">
-      <div on-click="setRoute" value="[[item.name]]">[[item.name]]</div>
-    </template>
+    <nav>
+      <template is="dom-repeat" items="[[pages]]">
+        <div class="nav-link" on-click="setRoute" value="[[item.name]]">[[item.name]]</div>
+      </template>
+    </nav>
   </template>
   <script>
     'use strict';
@@ -29,7 +40,7 @@
           pages: {
             type: Array,
             value: [
-              { name: 'Home', path: 'index.html' },
+              { name: 'Homepage', path: 'index.html' },
               { name: 'Create User', path: 'new-user.html' },
               { name: 'User Profile', path: 'user-profile.html' },
               { name: 'User List', path: 'users-list.html' },
