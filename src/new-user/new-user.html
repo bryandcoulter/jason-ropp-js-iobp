@@ -7,7 +7,10 @@
         padding: 10px;
       }
 
-      .contact-info-box {}
+      .first-name,
+      .last-name {
+        display: inline;
+      }
 
       form {
         margin-top: 20px;
@@ -16,6 +19,7 @@
 
       .form-box {
         padding: 10px;
+        width: 400px;
       }
 
       .form-box input,
@@ -23,7 +27,7 @@
         display: block;
         margin: 10px;
         border-radius: 3px;
-				width: 80%;
+        width: 80%;
       }
 
       .form-button {
@@ -41,7 +45,7 @@
       .submit-button-box {
         width: fit-content;
         border-radius: 3px;
-				min-width: 200px;
+        min-width: 200px;
       }
 
       .contact-info-header {
@@ -56,34 +60,24 @@
 
       }
 
-      .user-name-box,
-      .contact-info-box {
+      .new-user-fields {
         box-shadow: 1px 1px 4px #dadada;
         background-color: #B1A296;
         padding: 10px;
         width: fit-content;
         border-radius: 3px;
-				min-width: 200px;
-      }
-
-      .user-name-box {
-        margin-top: -10px;
-        margin-bottom: 5px;
+        min-width: 200px;
       }
     </style>
     <div class="form-box">
       <div class="heading">Add New User:</div>
       <form autocomplete="on" class="default-card">
-        <div class="user-name-box">
-          <div class="contact-info-header">Name:</div>
-          <input id="id" type="text" class="input" autocomplete="username" placeholder="User Id">
-          <input id="fName" type="text" class="input" autocomplete="given-name" placeholder="First Name">
-          <input id="lName" type="text" class="input" autocomplete="family-name" placeholder="Last Name">
-        </div>
-        <div class="contact-info-box">
-          <div class="contact-info-header">Contact Info:</div>
-          <input id="email" type="email" class="input" autocomplete="email" placeholder="Email">
-          <input id="phone" type="tel" class="input" autocomplete="tel" placeholder="Phone">
+        <div id="newUserFields" class="new-user-fields">
+          <input id="id" type="text" class="input" autocomplete="username" placeholder="User Id" required>
+          <input class="first-name" id="fName" type="text" class="input" autocomplete="given-name" placeholder="First Name" required>
+          <input class="last-name" id="lName" type="text" class="input" autocomplete="family-name" placeholder="Last Name" required>
+          <input id="email" type="email" class="input" autocomplete="email" placeholder="Email" name="email" required>
+          <input id="phone" type="tel" class="input" autocomplete="tel" placeholder="Phone" required>
         </div>
         <div class="submit-button-box">
           <button class="form-button" on-click="createUser" type="submit">Submit</button>
@@ -102,15 +96,20 @@
       }
       createUser(e) {
         e.preventDefault();
-        this.saveUser({
+
+        let user = {
           first: this.$.fName.value,
           last: this.$.lName.value,
           phone: this.$.phone.value,
           email: this.$.email.value,
           id: this.$.id.value
-        });
+        };
+        this.checkFields(user);
       }
+
       saveUser(user) {
+        console.log('saving', user);
+
         let users;
         if (localStorage.getItem('onboardProjectUsers')) {
           users = JSON.parse(localStorage.getItem('onboardProjectUsers'));
@@ -120,6 +119,18 @@
           users = [user];
           localStorage.setItem('onboardProjectUsers', JSON.stringify(users));
         }
+      }
+
+      // Makes sure all fields are filled
+      checkFields(user) {
+        let fields = this.$.newUserFields.children;
+        for (const prop in user) {
+          if (!user[prop]) {
+            window.alert(prop.toUpperCase() + ' is empty!');
+            return
+          }
+        }
+        this.saveUser(user);
       }
     }
 
