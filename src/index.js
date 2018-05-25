@@ -1,10 +1,8 @@
 // Creates entry point for css bundling
-import "./main.css";
+// import "./main.css";
+
 
 (() => {
-
-	// let button = document.getElementsByClassName('detailsButton'); // eslint-disable-line no-implicit-globals
-  // button.addEventListener('click', toggleUserDetails); // eslint-disable-line no-undef
 
 	function toggleDisplay(elem) {
 		if (elem.style.display === '') {
@@ -27,9 +25,5 @@ import "./main.css";
 
 	window.toggleUserDetails = toggleUserDetails;
 
-	return {
-		toggleDisplay: toggleDisplay,
-		toggleUserDetails: toggleUserDetails
-	}
 
 })();

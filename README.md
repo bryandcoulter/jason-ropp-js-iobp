@@ -20,23 +20,40 @@ This app allows you to create and edit user profiles, each of which have an ID, 
 
         `$ yarn lint`
 
+    To build a local example of the bundled file structure that webpack-dev-server uses
+
+        `$ yarn build`
+
 
 ## dependencies
 
-  ### Webpack
+### @Banno/Polymer
 
-    Webpack is used for bundling the files
+### Webpack-Dev-Server
 
-    The includes webpack,  and webpack-cli
+  Webpack-dev-server wraps around webpack, bundling and serving the files. 
 
-  ### NPM Serve
+  The bundling and serving happens together on `$ yarn start`
 
-    Current server fired by `$ yarn start` is npm serve
+  #### To Build File Structure Locally
 
-  ### UX-Lint
+  You will not see the bundled folder locally when using webpack-dev-server. 
 
-    Banno's lint packages for linting files. The .editorconfig file is set up to match Banno's styleguide
+  If you want to bundle the files locally to see how they will be organized in webpack-dev-server, run `$ yarn build` which fires `webpack` and builds the file locally. 
+  
+  To view the bundled files from the server:
 
-  ### Yarn 
-   
-    Used for running scripts instead of npm
+  `localhost:1820/localhost:8080/webpack-dev-server` in your browser.
+  
+
+  ##### Notes
+
+  The locally built files are not the exact files that are served. This is just an example of the file organization that webpack-dev-server builds on the server.
+
+### UX-Lint
+
+  Banno's lint packages for linting files. The .editorconfig file is set up to match Banno's styleguide
+
+### Yarn 
+  
+  Used for running scripts instead of npm
