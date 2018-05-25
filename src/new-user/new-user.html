@@ -127,11 +127,21 @@
         let fields = this.$.newUserFields.children;
         for (const prop in user) {
           if (!user[prop]) {
-            window.alert(prop.toUpperCase() + ' is empty!');
-            return
+            this.highlightEmptyFields();
+            window.alert('Please fill out highlighted fields');
+            return;
           }
         }
         this.saveUser(user);
+      }
+
+      highlightEmptyFields(){
+        let fields = this.$.newUserFields.children;
+        for (const field of fields) {
+          if(!field.value){
+            field.style.backgroundColor = 'lightblue';
+          }
+        }
       }
     }
 
