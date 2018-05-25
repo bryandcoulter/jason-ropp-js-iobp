@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
-	entry: './src/js/index.js',
+	entry: './src/index.js',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'main.js'
@@ -40,10 +40,8 @@ module.exports = {
 		new CleanWebpackPlugin('dist'),
 		new CopyWebpackPlugin([
 			{ from: 'src/*/*.html', to: '[name].[ext]' },
-			// { from: 'src/pages/*', to: '[name].[ext]' },
 			{ from: 'src/index.html', to: '[name].[ext]' },
 			{ from: 'node_modules/@banno/polymer/polymer.html', to: '[name].[ext]' },
-			{ from: 'src/services/styles.css', to: '[name].[ext]' },
 		]),
 		// Does the same thing as copywebpackplugin but for webpack-dev-server
 		new WriteFilePlugin(),
