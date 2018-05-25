@@ -74,8 +74,8 @@
       <form autocomplete="on" class="default-card">
         <div id="newUserFields" class="new-user-fields">
           <input id="id" type="text" class="input" autocomplete="username" placeholder="User Id" required>
-          <input class="first-name" id="fName" type="text" class="input" autocomplete="given-name" placeholder="First Name" required>
-          <input class="last-name" id="lName" type="text" class="input" autocomplete="family-name" placeholder="Last Name" required>
+          <input id="fName" type="text" class="input first-name" autocomplete="given-name" placeholder="First Name" required>
+          <input id="lName" type="text" class="input last-name" autocomplete="family-name" placeholder="Last Name" required>
           <input id="email" type="email" class="input" autocomplete="email" placeholder="Email" name="email" required>
           <input id="phone" type="tel" class="input" autocomplete="tel" placeholder="Phone" required>
           <input id="department" class="input" placeholder="department" required>
@@ -110,7 +110,6 @@
       }
 
       saveUser(user) {
-
         let users;
         if (localStorage.getItem('onboardProjectUsers')) {
           users = JSON.parse(localStorage.getItem('onboardProjectUsers'));
@@ -120,12 +119,12 @@
           users = [user];
           localStorage.setItem('onboardProjectUsers', JSON.stringify(users));
         }
+				this.emptyNewUserForm();
       }
 
       // Makes sure all fields are filled
       checkFields(user) {
-        let fields = this.$.newUserFields.children;
-        for (const prop in user) {
+        for (let prop in user) {
           if (!user[prop]) {
             this.highlightEmptyFields();
             window.alert('Please fill out highlighted fields');
@@ -135,14 +134,21 @@
         this.saveUser(user);
       }
 
-      highlightEmptyFields(){
+      highlightEmptyFields() {
         let fields = this.$.newUserFields.children;
-        for (const field of fields) {
-          if(!field.value){
+        for (let field of fields) {
+          if (!field.value) {
             field.style.backgroundColor = 'lightblue';
           }
         }
       }
+
+			emptyNewUserForm(){
+				let fields = this.$.newUserFields.children;
+				for (let field of fields) {
+          field.value = "";
+        }
+			}
     }
 
     customElements.define(NewUser.is, NewUser);
