@@ -78,6 +78,7 @@
           <input class="last-name" id="lName" type="text" class="input" autocomplete="family-name" placeholder="Last Name" required>
           <input id="email" type="email" class="input" autocomplete="email" placeholder="Email" name="email" required>
           <input id="phone" type="tel" class="input" autocomplete="tel" placeholder="Phone" required>
+          <input id="department" class="input" placeholder="department" required>
         </div>
         <div class="submit-button-box">
           <button class="form-button" on-click="createUser" type="submit">Submit</button>
@@ -102,13 +103,13 @@
           last: this.$.lName.value,
           phone: this.$.phone.value,
           email: this.$.email.value,
-          id: this.$.id.value
+          id: this.$.id.value,
+          department: this.$.department.value
         };
         this.checkFields(user);
       }
 
       saveUser(user) {
-        console.log('saving', user);
 
         let users;
         if (localStorage.getItem('onboardProjectUsers')) {
