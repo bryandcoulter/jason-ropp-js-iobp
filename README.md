@@ -4,9 +4,11 @@
 
 This app allows you to create and edit user profiles, each of which have an ID, Name, Number, and Email Address.
 
+To create a new user, click the 'Create User' tab and fill out the form. Users will be added to the users list, which you can view by clicking the 'User List' tab. To see the details of the user, just hover over the user card.
+
 ## how to use
 
-To create a new user, click the 'Create User' tab and fill out the form. Users will be added to the users list, which you can view by clicking the 'User List' tab. To see the details of the user, just hover over the user card.
+Not currently compatible with firefox
 
 ### NPM Scripts
     To serve the app (also runs ux-lint):
