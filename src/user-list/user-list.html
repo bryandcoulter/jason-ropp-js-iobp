@@ -46,9 +46,13 @@
     <template is="dom-if" if="[[!userToDisplay]]">
       <h2>There are currently no users in our system.</h2>
     </template>
-    <template is="dom-repeat" items="[[users]]">
-      <user-component display="true" user="[[item]]">
-      </user-component>
+
+    <template is="dom-if" if="[[userToDisplay]]">
+      <p>Click the user card to toggle detals</p>
+      <template is="dom-repeat" items="[[users]]">
+        <user-component collapsed="true" mode="display" user="[[item]]">
+        </user-component>
+      </template>
     </template>
   </template>
   <script>
@@ -76,7 +80,8 @@
       }
       connectedCallback() {
         super.connectedCallback();
-        if (!this.users) {
+
+        if (!this.users[0]) {
           this.set('userToDisplay', false);
         }
       }

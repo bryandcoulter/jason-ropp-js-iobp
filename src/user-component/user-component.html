@@ -1,389 +1,324 @@
+<!-- User component card has three settings mode="display" mode="edit" mode="create"
+	<user-component mode="display"> Displays the user passed into it.
+
+	<user-component mode="edit"> Brings up autofilled input boxes with the current users information
+		change and submit the data to update the users information
+
+	<user-component mode="create"> Opens up a form to enter a new users information. This box auto-generates a 9 character id
+-->
+
 <link rel="import" href="polymer.html">
 <dom-module id="user-component">
-  <template>
-    <style>
-      :host {
-        display: block;
-        padding: 10px;
-      }
+	<template>
+		<style>
+			:host {
+				display: block;
+			}
 
-      .default-card {
-        background-color: #B1A296;
-        min-width: 300px;
-        width: fit-content;
-        padding: 15px;
-        margin: 5px;
-        border-radius: 5px;
-        box-shadow: 3px 3px 2px lightgrey;
-      }
+			.default-card {
+				background-color: #B1A296;
+				min-width: 300px;
+				width: fit-content;
+				padding: 15px;
+				margin: 5px;
+				border-radius: 5px;
+				box-shadow: 3px 3px 2px lightgrey;
+			}
 
+			.default-card>input .first-name .last-name {
+				width: 20px;
+			}
+		</style>
+		<template is="dom-if" if="[[create]]">
+			<div class="form-box">
+				<div class="heading">Add New User:</div>
+				<form autocomplete="on" class="default-card">
+					<div id="newUserFields" class="new-user-fields">
+						<input id="fName" type="text" class="input first-name" autocomplete="given-name" placeholder="First Name" required>
+						<input id="lName" type="text" class="input last-name" autocomplete="family-name" placeholder="Last Name" required>
+						<input id="email" type="email" class="input" autocomplete="email" placeholder="Email" name="email" required>
+						<input id="phone" type="tel" class="input" autocomplete="tel" placeholder="Phone" required>
+						<input id="department" class="input" placeholder="department" required>
+					</div>
+					<div class="submit-button-box">
+						<button class="form-button" on-click="saveNewUser" type="submit">Submit</button>
+					</div>
+				</form>
+			</div>
+		</template>
+		<template is="dom-if" if="[[display]]">
+			<hgroup class="default-card" on-click="toggleCollapse">
+				<h2 class="name">[[user.first]] [[user.last]]</h2>
+				<template is="dom-if" if="[[!collapsed]]">
+					<h3 class="id">ID: [[user.id]]</h3>
+					<h3 class="phone">[[user.phone]]</h3>
+					<h3 class="email">
+						<a href="dummy@email.com">[[user.email]]</a>
+					</h3>
+					<h3 class="department">
+						[[user.department]]
+					</h3>
+					<button on-click="editUserDisplay">Edit User</button>
+				</template>
+				<template is="dom-if" if="[[admin]]">
+					<button on-click="[[editUserDisplay]]">Edit User Details</button>
+				</template>
+			</hgroup>
+		</template>
+		<template is="dom-if" if="[[edit]]">
+			<div class="form-box">
+				<form autocomplete="on">
+					<div id="editUserFields" class="default-card">
+						<h5>Name:</h5>
+						<input id="editFName" type="text" class="input first-name" autocomplete="given-name" value="[[user.first]]" required>
+						<input id="editLName" type="text" class="input last-name" autocomplete="family-name" value="[[user.last]]" required>
+						<h5>Id:</h5>
+						<p id="editId" value="[[user.id]]">[[user.id]]</p>
+						<h5>Email:</h5>
+						<input id="editEmail" type="email" class="input" autocomplete="email" value="[[user.email]]" name="email" required>
+						<h5>Phone:</h5>
+						<input id="editPhone" type="tel" class="input" autocomplete="tel" value="[[user.phone]]" required>
+						<h5>Department:</h5>
+						<input id="editDepartment" class="input" value="[[user.department]]" required>
+					</div>
+					<div class="submit-button-box">
+						<button class="form-button" on-click="saveUserEdit" type="submit">Submit</button>
+						<button class="form-button" on-click="deleteUser" type="submit">Delete</button>
+					</div>
+				</form>
+			</div>
+		</template>
+	</template>
+	<script>
+		'use strict';
+		class UserComponent extends Polymer.Element {
+			static get is() { return 'user-component'; }
+			static get properties() {
+				return {
+					edit: {
+						type: Boolean,
+						value: false
+					},
+					create: {
+						type: Boolean,
+						value: false
+					},
+					display: {
+						type: Boolean,
+						value: false
+					},
+					collapsed: {
+						type: Boolean,
+						value: false,
+						observer: 'collapseDetails'
+					},
+					user: {
+						type: Object,
+						observer: 'confirm'
+					},
+					userBeforeEdit: {
+						type: Object
+					},
+					mode: {
+						type: String,
+						observer: 'changeMode'
+					}
+				};
+			}
+			ready() {
+				super.ready();
 
+				// Temporary setting user for checking user profile
+				if (!this.user) {
+					this.user = this.getUsers()[0];
+				}
+			}
 
-      .default-card>input .first-name .last-name {
-        width: 20px;
-      }
+			changeMode() {
+				switch (this.mode) {
+					case 'edit':
+						this.editUserDisplay();
+						break;
+					case 'create':
+						this.createUserDisplay();
+						break;
+					case 'display':
+						this.showUserDisplay();
+						break;
+					default:
+						break;
+				}
+			}
 
+			// Makes sure all fields are filled
+			checkFields(user) {
+				for (let prop in user) {
+					if (!user[prop]) {
+						window.alert('Please fill out highlighted fields');
+						return false;
+					}
+				}
+				return true;
+			}
 
+			createNewUserId() {
+				let id = [];
 
-      /*
-      form {
-        margin-top: 20px;
-        width: 140px;
-      }
+				// returns 9 random letters/symbols/numbers and pushes them into the id.
+				for (let i = 0; i < 9; i++) { // eslint-disable-line no-magic-numbers
+					let number = Math.random() * (94); // eslint-disable-line no-magic-numbers
+					id.push(String.fromCharCode(Math.floor(number + 33))); // eslint-disable-line no-magic-numbers
+				}
+				id = id.join('');
 
-      .form-box {
-        padding: 10px;
-        width: 400px;
-      }
+				// Checks to make sure id is not already in use
+				if (this.getIdIndex(id)) {
+					this.createNewUserId();
+				} else {
+					return id;
+				}
+			}
 
-      .form-box input,
-      .form-button {
-        display: block;
-        margin: 10px;
-        border-radius: 3px;
-        width: 80%;
-      }
+			compileUserFormData() {
+				let user = {
+					first: this.shadowRoot.querySelector('#fName').value,
+					last: this.shadowRoot.querySelector('#lName').value,
+					phone: this.shadowRoot.querySelector('#phone').value,
+					email: this.shadowRoot.querySelector('#email').value,
+					department: this.shadowRoot.querySelector('#department').value
+				};
+				this.checkFields(user);
 
-      .form-button {
-        display: block;
-        margin: 10px;
-        margin-left: 20px;
-      }
+				return user;
+			}
+			compileEditUserFormData() {
+				let user = {
+					first: this.shadowRoot.querySelector('#editFName').value,
+					last: this.shadowRoot.querySelector('#editLName').value,
+					phone: this.shadowRoot.querySelector('#editPhone').value,
+					email: this.shadowRoot.querySelector('#editEmail').value,
+					id: this.shadowRoot.querySelector('#editId').value,
+					department: this.shadowRoot.querySelector('#editDepartment').value
+				};
+				this.checkFields(user);
 
-      .heading {
-        position: relative;
-        left: -10px;
-        margin: 10px;
-      }
+				return user;
+			}
 
-      .submit-button-box {
-        width: fit-content;
-        border-radius: 3px;
-        min-width: 200px;
-      }
+			deleteUser() {
+				let user = this.compileEditUserFormData();
+				let users = this.getUsers();
 
-      .contact-info-header {
-        font-size: 12px;
-        font-weight: bold;
-        margin: 5px;
-        margin-left: 10px;
-        margin-right: 10px;
-        border-top: 1px solid rgb(94, 94, 94);
-        border-bottom: 1px solid rgb(94, 94, 94);
-        text-align: center;
+				users.splice(this.getIdIndex(user.id), 1);
+				this.saveToLocalStorage(users);
+				this.showUserDisplay();
+			}
 
-      }
+			emptyNewUserForm() {
+				let fields = this.shadowRoot.querySelector('#newUserFields').children;
 
-      .new-user-fields {
-        box-shadow: 1px 1px 4px #dadada;
-        background-color: #B1A296;
-        padding: 10px;
-        width: fit-content;
-        border-radius: 3px;
-        min-width: 200px;
-      }
+				for (let field of fields) {
+					field.value = '';
+				}
+			}
 
-      .default-card:hover {
-        height: 230px;
-        transition: height .4s ease-out;
-      }
+			getIdIndex(id) {
+				let users = this.getUsers();
 
-      .default-card:not(:hover) {
-        height: 50px;
-        transition: height .4s ease-in;
-      }
+				let index = (users) ? users.findIndex(val => val.id === id) : -1;
 
-      .default-card:hover>h3 {
-        opacity: 1;
-        transition: opacity 1.4s;
-      }
+				// Returns false if id does not exist
+				return (index === -1) ? false : index;
+			}
 
-      .default-card>h3 {
-        opacity: 0;
-      }
+			getUsers() {
+				let users = JSON.parse(localStorage.getItem('onboardProjectUsers'));
 
-      button {
-        background-color: #7395AE;
-        color: black;
-        border: none;
-      } */
-    </style>
-    <template is="dom-if" if="[[create]]">
-      <div class="form-box">
-        <div class="heading">Add New User:</div>
-        <form autocomplete="on" class="default-card">
-          <div id="newUserFields" class="new-user-fields">
-            <input id="fName" type="text" class="input first-name" autocomplete="given-name" placeholder="First Name" required>
-            <input id="lName" type="text" class="input last-name" autocomplete="family-name" placeholder="Last Name" required>
-            <input id="email" type="email" class="input" autocomplete="email" placeholder="Email" name="email" required>
-            <input id="phone" type="tel" class="input" autocomplete="tel" placeholder="Phone" required>
-            <input id="department" class="input" placeholder="department" required>
-          </div>
-          <div class="submit-button-box">
-            <button class="form-button" on-click="saveNewUser" type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
-    </template>
-    <template is="dom-if" if="[[display]]">
-      <hgroup class="default-card">
-        <h2 class="name">[[user.first]] [[user.last]]</h2>
-        <template is="dom-if" if="[[!collapsed]]">
-          <h3 class="id">ID: [[user.id]]</h3>
-          <h3 class="phone">[[user.phone]]</h3>
-          <h3 class="email">
-            <a href="dummy@email.com">[[user.email]]</a>
-          </h3>
-          <button on-click="editUserDisplay">Edit User</button>
-        </template>
-        <template is="dom-if" if="[[admin]]">
-          <button on-click="[[editUserDisplay]]">Edit User Details</button>
-        </template>
-      </hgroup>
-    </template>
-    <template is="dom-if" if="[[edit]]">
-      <div class="form-box">
-        <form autocomplete="on">
-          <div id="editUserFields" class="default-card">
-            <h5>Name:</h5>
-            <input id="editFName" type="text" class="input first-name" autocomplete="given-name" value="[[user.first]]" required>
-            <input id="editLName" type="text" class="input last-name" autocomplete="family-name" value="[[user.last]]" required>
-            <h5>Id:</h5>
-            <p id="editId" value="[[user.id]]">[[user.id]]</p>
-            <h5>Email:</h5>
-            <input id="editEmail" type="email" class="input" autocomplete="email" value="[[user.email]]" name="email" required>
-            <h5>Phone:</h5>
-            <input id="editPhone" type="tel" class="input" autocomplete="tel" value="[[user.phone]]" required>
-            <h5>Department:</h5>
-            <input id="editDepartment" class="input" value="[[user.department]]" required>
-          </div>
-          <div class="submit-button-box">
-            <button class="form-button" on-click="saveUserEdit" type="submit">Submit</button>
-            <button class="form-button" on-click="deleteUser" type="submit">Delete</button>
-          </div>
-        </form>
-      </div>
-    </template>
-  </template>
-  <script>
-    'use strict';
-    class UserComponent extends Polymer.Element {
-      static get is() { return 'user-component'; }
-      static get properties() {
-        return {
-          edit: {
-            type: Boolean,
-            value: false
-          },
-          create: {
-            type: Boolean,
-            value: false
-          },
-          display: {
-            type: Boolean,
-            value: false
-          },
-          collapsed: {
-            type: Boolean,
-            value: false,
-            observer: 'collapseDetails'
-          },
-          user: {
-            type: Object,
-            observer: 'confirm'
-          },
-          userBeforeEdit: {
-            type: Object
-          },
-          mode: {
-            type: String,
-            observer: 'changeMode'
-          }
-        };
-      }
-      ready() {
-        super.ready();
-      }
+				// checks to see if array has users, if not, inits a users aray
+				if (!users[0]) {
+					users = [];
+				}
+				return users;
+			}
 
+			saveNewUser(e) {
+				e.preventDefault();
+				let user = this.compileUserFormData();
 
-      createNewUserId() {
-        let id = [];
-        // returns 9 random letters/symbols/numbers and pushes them into the id.
-        for (let i = 0; i < 9; i++) { // eslint-disable-line no-magic-numbers
-          let number = Math.random() * (95); // eslint-disable-line no-magic-numbers
-          let char = String.fromCharCode(Math.floor(number + 33)); // eslint-disable-line no-magic-numbers
-          id.push(char);
-        }
-        id = id.join('');
-        // Checks to make sure id is not already in use
-        if (this.getIdIndex(id)) {
-          this.createNewUserId();
-        } else {
-          return id;
-        }
-      }
-      deleteUser(event) {
-        let user = this.compileEditUserFormData();
-        let index = this.getIdIndex(user.id);
-        let users = this.getUsers();
-        users.splice(index, 1);
-        this.saveToLocalStorage(users);
-        this.showUserDisplay();
-      }
+				if (this.checkFields(user)) {
+					// Gives the new user a unique autogenerated id
+					user.id = this.createNewUserId();
 
-      getIdIndex(id) {
-        let users = this.getUsers();
+					let users = this.getUsers();
 
-        for (let i = 0; i < users.length; i++) {
-          const user = users[i];
-          if (user.id === id) {
-            return i;
-          }
-        }
-        return false;
-      }
+					if (users[0]){
+						users.push(user);
+					} else {
+						users = [user];
+					}
 
-      saveNewUser(e) {
-        e.preventDefault();
-        let user = this.compileUserFormData();
-        // Gives the new user a unique autogenerated id
-        user.id = this.createNewUserId();
-        let users = this.getUsers();
-        if (users) {
-          users.push(user);
-        } else {
-          users = [user];
-        }
-        this.emptyNewUserForm();
-        this.saveToLocalStorage(users);
-      }
+					this.emptyNewUserForm();
 
-      saveUserEdit() {
-        let user = this.compileEditUserFormData();
-        let users = this.getUsers();
+					this.saveToLocalStorage(users);
+				}
+			}
 
-        // Do I even need to do this? Doesn't it do it automatically?
-        let fieldsFilled = this.checkFields(user);
+			saveUserEdit(e) {
+				e.preventDefault();
+				let user = this.compileEditUserFormData();
+				let fieldsFilled = this.checkFields(user);
 
-        if (fieldsFilled) {
-          for (let i = 0; i < users.length; i++) {
-            const item = users[i];
-            if (item.id === user.id) {
-              users.splice(i, 1, user);
-              this.saveToLocalStorage(users);
-              return;
-            }
-          }
-        }
-      }
+				if (fieldsFilled) {
 
-      compileUserFormData() {
-        let user = {
-          first: this.shadowRoot.querySelector('#fName').value,
-          last: this.shadowRoot.querySelector('#lName').value,
-          phone: this.shadowRoot.querySelector('#phone').value,
-          email: this.shadowRoot.querySelector('#email').value,
-          department: this.shadowRoot.querySelector('#department').value
-        };
-        this.checkFields(user);
+					let user = this.compileEditUserFormData();
+					let users = this.getUsers();
+					let index = this.getIdIndex(user.id);
 
-        return user;
-      }
-      compileEditUserFormData() {
-        let user = {
-          first: this.shadowRoot.querySelector('#editFName').value,
-          last: this.shadowRoot.querySelector('#editLName').value,
-          phone: this.shadowRoot.querySelector('#editPhone').value,
-          email: this.shadowRoot.querySelector('#editEmail').value,
-          id: this.shadowRoot.querySelector('#editId').value,
-          department: this.shadowRoot.querySelector('#editDepartment').value
-        };
-        this.checkFields(user);
+					users.splice(index , 1, user);
 
-        return user;
-      }
+					// Updates the information displayed on the user card
+					this.user = user;
 
-      createNewUser(e) {
-        e.preventDefault();
-        let user = this.compileUserData();
-        this.saveUser(user);
-      }
+					this.saveToLocalStorage(users);
+					this.showUserDisplay();
 
-      getUsers() {
-        return JSON.parse(localStorage.getItem('onboardProjectUsers'));
-      }
+					if (this.collapsed) {
+						this.toggleCollapse();
+					}
 
-      saveToLocalStorage(users) {
-        localStorage.setItem('onboardProjectUsers', JSON.stringify(users));
-      }
-      // Makes sure all fields are filled
-      checkFields(user) {
-        for (let prop in user) {
-          if (!user[prop]) {
-            this.highlightEmptyFields();
-            window.alert('Please fill out highlighted fields');
-            return false;
-          }
-        }
+				}
+			}
 
-        return true;
-      }
+			saveToLocalStorage(users) {
+				console.log('save to local storage ', users);
 
-      highlightEmptyFields() {
-        let fields = this.$.newUserFields.children;
-        for (let field of fields) {
-          if (!field.value) {
-            field.style.backgroundColor = 'lightblue';
-          }
-        }
-      }
+				localStorage.setItem('onboardProjectUsers', JSON.stringify(users));
+			}
 
-      emptyNewUserForm() {
-        let fields = this.shadowRoot.querySelector('#newUserFields').children;
+			toggleCollapse() {
+				this.collapsed = this.collapsed !== true;
+			}
 
-        for (let field of fields) {
-          field.value = '';
-        }
-      }
+			editUserDisplay() {
+				this.userBeforeEdit = this.user;
+				this.edit = true;
+				this.display = false;
+				this.create = false;
+			}
 
-      changeMode() {
-        switch (this.mode) {
-          case 'edit':
-            this.editUserDisplay();
-            break;
-          case 'create':
-            this.createUserDisplay();
-            break;
-          case 'display':
-            this.showUserDisplay();
-            break;
-          default:
-            break;
-        }
-      }
+			createUserDisplay() {
+				this.edit = false;
+				this.display = false;
+				this.create = true;
+			}
 
-      editUserDisplay() {
-        this.userBeforeEdit = this.user;
-        this.edit = true;
-        this.display = false;
-        this.create = false;
-      }
+			showUserDisplay() {
+				this.edit = false;
+				this.display = true;
+				this.create = false;
+			}
+		}
 
-      createUserDisplay() {
-        this.edit = false;
-        this.display = false;
-        this.create = true;
-      }
-
-      showUserDisplay() {
-        this.edit = false;
-        this.display = true;
-        this.create = false;
-      }
-
-
-    }
-
-    customElements.define(UserComponent.is, UserComponent);
-  </script>
+		customElements.define(UserComponent.is, UserComponent);
+	</script>
 </dom-module>
