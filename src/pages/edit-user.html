@@ -10,12 +10,17 @@
 </head>
 <style>
   .default-card {
-    background-color: gainsboro;
+    background-color: #B1A296;
     width: fit-content;
     padding: 15px;
     margin: 5px;
     border-radius: 5px;
     box-shadow: 3px 3px 2px lightgrey;
+  }
+
+  input {
+    display: block;
+    margin: 10px;
   }
 </style>
 
@@ -27,15 +32,9 @@
   </header>
   <h1>Edit User:</h1>
   <form class="default-card">
-    <label>First:
-      <input type="text" placeholder="First Name">
-    </label>
-    <label>Last:
-      <input type="text" placeholder="Last Name">
-    </label>
-    <label>Phone:
-      <input type="text" placeholder="Phone">
-    </label>
+    <input type="text" autocomplete="name" placeholder="First Name">
+    <input type="text" autocomplete="family-name" placeholder="Last Name">
+    <input type="text" autocomplete="tel" placeholder="Phone">
     <button>Submit</button>
   </form>
 </body>

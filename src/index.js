@@ -1,7 +1,3 @@
-// Creates entry point for css bundling
-// import "./main.css";
-
-
 (() => {
 
 	function toggleDisplay(elem) {
