@@ -97,14 +97,6 @@
 					},
 					users: {
 						type: Array,
-						value: function () {
-							let users = JSON.parse(localStorage.getItem('onboardProjectUsers'));
-							if (users === null) {
-								return []
-							} else {
-								return users
-							}
-						},
 						observer: 'saveToLocalStorage'
 					},
 					userBeforeEdit: {
@@ -112,10 +104,14 @@
 					}
 				};
 			}
-			ready() {
-				super.ready();
-
-
+			connectedCallback() {
+				super.connectedCallback();
+				let users = JSON.parse(localStorage.getItem('onboardProjectUsers'));
+				if (users === null) {
+					this.set('users', [])
+				} else {
+					this.set('users', users)
+				}
 			}
 
 			// Makes sure all fields are filled
@@ -191,7 +187,7 @@
 					// if new user
 					if (user.id === undefined) {
 						user.id = this.createNewUserId();
-						this.users.splice(0, 0, user);
+						this.splice(0, 0, user);
 
 						this.saveToLocalStorage();
 						this.emptyNewUserForm();
