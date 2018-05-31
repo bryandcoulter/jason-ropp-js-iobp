@@ -49,15 +49,25 @@
 			<div class="form-box">
 				<form autocomplete="on">
 					<div id="editUserFields" class="default-card">
-						<h5>Name:</h5>
-						<input id="fName" type="text" class="input first-name" autocomplete="given-name" value="[[user.first]]" required>
-						<input id="lName" type="text" class="input last-name" autocomplete="family-name" value="[[user.last]]" required>
-						<h5>Email:</h5>
-						<input id="email" type="email" class="input" autocomplete="email" value="[[user.email]]" name="email" required>
-						<h5>Phone:</h5>
-						<input id="phone" type="tel" class="input" autocomplete="tel" value="[[user.phone]]" required>
-						<h5>Department:</h5>
-						<input id="department" class="input" value="[[user.department]]" required>
+						<label for="fName">
+							<h5>Name:</h5>
+							<input id="fName" type="text" class="first-name" autocomplete="given-name" value="[[user.first]]" required>
+						</label>
+						<label for="lName">
+							<input id="lName" type="text" class="last-name" autocomplete="family-name" value="[[user.last]]" required>
+						</label>
+						<label>
+							<h5>Email:</h5>
+							<input id="email" type="email" autocomplete="email" value="[[user.email]]" name="email" required>
+						</label>
+						<label for="phone">
+							<h5>Phone:</h5>
+							<input id="phone" type="tel" autocomplete="tel" value="[[user.phone]]" required>
+						</label>
+						<label for="department">
+							<h5>Department:</h5>
+							<input id="department" value="[[user.department]]" required>
+						</label>
 					</div>
 					<div class="submit-button-box">
 						<button class="form-button" on-click="save" type="submit">Submit</button>
@@ -84,6 +94,18 @@
 					},
 					user: {
 						type: Object,
+					},
+					users: {
+						type: Array,
+						value: function () {
+							let users = JSON.parse(localStorage.getItem('onboardProjectUsers'));
+							if (users === null) {
+								return []
+							} else {
+								return users
+							}
+						},
+						observer: 'saveToLocalStorage'
 					},
 					userBeforeEdit: {
 						type: Object
@@ -125,8 +147,7 @@
 				}
 			}
 
-			compileUserFormData(e) {
-
+			compileUserFormData() {
 
 				let user = {
 					first: this.shadowRoot.querySelector('#fName').value,
@@ -136,79 +157,66 @@
 					department: this.shadowRoot.querySelector('#department').value
 				};
 
+				if (this.user) {
+					user.id = this.user.id;
+				}
+
 				return user;
 			}
 
-
 			deleteUser() {
-				let users = this.getUsers();
 				let userIndex = this.getIdIndex(this.user.id);
-
-				users.splice(userIndex, 1);
-				this.saveToLocalStorage(users);
-				this.showUserDisplay();
+				this.users.splice(userIndex, 1);
+				this.saveToLocalStorage();
 			}
 
 			emptyNewUserForm() {
-
+				let fields = this.shadowRoot.querySelectorAll('input');
+				for (let field of fields) {
+					field.value = '';
+				}
 			}
 
 			getIdIndex(id) {
-				let users = this.getUsers();
-
-				let index = (users) ? users.findIndex(val => val.id === id) : -1;
-
+				let index = (this.users) ? this.users.findIndex(val => val.id === id) : -1;
 				// Returns false if id does not exist
 				return (index === -1) ? false : index;
-			}
 
-			getUsers() {
-				let users = JSON.parse(localStorage.getItem('onboardProjectUsers'));
-
-				// checks to see if array has users, if not, inits a users aray
-				if (!users) {
-					users = [];
-				}
-				return users;
 			}
 
 			save(e) {
 				e.preventDefault();
-				let user = (this.user) ? this.user : this.compileUserFormData(e);
-
-				let users = this.getUsers();
-				let fieldsFilled = this.checkFields(user);
-
-				if (fieldsFilled) {
+				let user = this.compileUserFormData(e);
+				if (this.checkFields(user)) {
 					// if new user
 					if (user.id === undefined) {
 						user.id = this.createNewUserId();
-						users.push(user);
+						this.users.splice(0, 0, user);
 
-						let fields = this.shadowRoot.querySelector('#editUserFields').children;
-						for (let field of fields) {
-							field.value = '';
-						}
+						this.saveToLocalStorage();
+						this.emptyNewUserForm();
 						// if existing user
 					} else {
-						let index = this.getIdIndex(user.id);
-						users.splice(index, 1, user);
-						// Updates the information displayed on the user card so when you close the edit window it displays properly
+						let index = this.getIdIndex(this.user.id);
+						this.users.splice(index, 1, user);
 						this.user = user;
+
+						this.saveToLocalStorage();
+						// Updates the information displayed on the user card so when you close the edit window it displays properly
 						this.toggleView();
 					}
-
-					this.saveToLocalStorage(users);
 
 
 					if (this.collapsed) {
 						this.toggleCollapse();
 					}
+
 				}
+
 			}
 
-			saveToLocalStorage(users) {
-				localStorage.setItem('onboardProjectUsers', JSON.stringify(users));
+			saveToLocalStorage() {
+				localStorage.setItem('onboardProjectUsers', JSON.stringify(this.users));
 			}
 
 			toggleCollapse() {
