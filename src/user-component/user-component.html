@@ -235,7 +235,7 @@
         let users = JSON.parse(localStorage.getItem('onboardProjectUsers'));
 
         // checks to see if array has users, if not, inits a users aray
-        if (!users[0]) {
+        if (!users.length) {
           users = [];
         }
         return users;
@@ -251,7 +251,7 @@
 
           let users = this.getUsers();
 
-          if (users[0]) {
+          if (users.length) {
             users.push(user);
           } else {
             users = [user];
