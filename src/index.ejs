@@ -14,7 +14,8 @@
 </head>
 <body>
 	<p>Jank Page</p>
-  <nav-bar></nav-bar>
+	<nav-bar></nav-bar>
+	<user-component></user-component>
 
 
   <!--
@@ -25,13 +26,11 @@
   <div id="ce-es5-shim">
     <script type="text/javascript">
       if (!window.customElements) {
-				debugger;
-
         var ceShimContainer = document.querySelector('#ce-es5-shim');
         ceShimContainer.parentElement.removeChild(ceShimContainer);
       }
     </script>
-    <script type="text/javascript" src="../@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+    <script type="text/javascript" src="@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
   </div>
 
   <!--
@@ -39,7 +38,6 @@
   -->
   <script>
     (function() {
-			debugger;
       document.addEventListener('WebComponentsReady', function componentsReady() {
         document.removeEventListener('WebComponentsReady', componentsReady, false);
         var script = document.createElement('script');
@@ -49,6 +47,6 @@
       }, false);
     })();
   </script>
-  <script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 </body>
 </html>

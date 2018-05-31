@@ -4,7 +4,7 @@
   "description": "## Description This app allows you to create and edit user profiles, each of which have an ID, Name, Number, and Email Address.",
   "main": "index.js",
   "scripts": {
-    "prestart": "ux-lint src/*/*.html",
+    "wow": "ux-lint src/*/*.html",
     "build": "webpack --mode development",
     "start": "webpack-dev-server --https --port 1820 --mode production",
     "help": "npm-scripts-help",
@@ -21,7 +21,9 @@
     "url": "https://github.com/Jropp/jason-ropp-js-iobp/issues"
   },
   "homepage": "https://github.com/Jropp/jason-ropp-js-iobp",
-  "dependencies": {},
+  "dependencies": {
+    "bower": "^1.8.4"
+  },
   "devDependencies": {
     "@banno/polymer": "2.3.1-html-imports",
     "@webcomponents/webcomponentsjs": "^2.0.0",
