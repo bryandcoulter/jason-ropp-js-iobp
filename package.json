@@ -24,6 +24,7 @@
   "dependencies": {},
   "devDependencies": {
     "@banno/polymer": "2.3.1-html-imports",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
     "babel-loader": "^7.1.4",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
