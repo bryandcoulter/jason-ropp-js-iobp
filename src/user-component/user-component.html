@@ -28,6 +28,10 @@
       .default-card>input .first-name .last-name {
         width: 20px;
       }
+
+      input {
+        margin: 5px;
+      }
     </style>
     <template is="dom-if" if="[[userProfileDisplay]]">
       <div class="default-card">
@@ -56,25 +60,29 @@
       <div class="form-box">
         <form autocomplete="on">
           <div id="editUserFields" class="default-card">
-            <label for="fName">
-              <h5>Name:</h5>
-              <input id="fName" type="text" class="first-name" autocomplete="given-name" value="[[user.first]]" required>
-            </label>
-            <label for="lName">
-              <input id="lName" type="text" class="last-name" autocomplete="family-name" value="[[user.last]]" required>
-            </label>
-            <label>
-              <h5>Email:</h5>
-              <input id="email" type="email" autocomplete="email" value="[[user.email]]" name="email" required>
-            </label>
-            <label for="phone">
-              <h5>Phone:</h5>
-              <input id="phone" type="tel" autocomplete="tel" value="[[user.phone]]" required>
-            </label>
-            <label for="department">
-              <h5>Department:</h5>
-              <input id="department" value="[[user.department]]" required>
-            </label>
+            <fieldset>
+              <legend>
+                Name:
+              </legend>
+              <input id="fName" type="text" class="first-name" placeholder="First" autocomplete="given-name" value="[[user.first]]" required>
+              <input id="lName" type="text" class="last-name" placeholder="Last" autocomplete="family-name" value="[[user.last]]" required>
+            </fieldset>
+            <fieldset>
+              <legend>Contact:</legend>
+              <label for="email">
+                <input id="email" type="email" placeholder="email"autocomplete="email" value="[[user.email]]" name="email" required>
+              </label><br>
+              <label for="phone">
+                <input id="phone" type="tel" placeholder="phone" autocomplete="tel" value="[[user.phone]]" required>
+              </label>
+            </fieldset>
+            <fieldset>
+              <legend>Other:</legend>
+              <label for="department">
+                <input id="department" placeholder="Department" value="[[user.department]]" required>
+              </label>
+            </fieldset>
+
           </div>
           <div class="submit-button-box">
             <button class="form-button" on-click="save" type="submit">Submit</button>
