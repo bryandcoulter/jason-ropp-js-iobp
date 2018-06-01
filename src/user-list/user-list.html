@@ -78,8 +78,8 @@
 
       }
       connectedCallback() {
-				super.connectedCallback();
-				this.set('users', JSON.parse(localStorage.getItem('onboardProjectUsers')));
+        super.connectedCallback();
+        this.set('users', JSON.parse(localStorage.getItem('onboardProjectUsers')));
 
         if (!this.users[0]) {
           this.set('userToDisplay', false);
