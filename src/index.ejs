@@ -10,7 +10,8 @@
       margin: 0;
       box-sizing: border-box;
     }
-  </style>
+	</style>
+
 </head>
 <body>
 	<p>Jank Page</p>
@@ -46,7 +47,10 @@
         refScript.parentNode.insertBefore(script, refScript);
       }, false);
     })();
-  </script>
-  <script src="@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+	</script>
+	<script src="@webcomponents/webcomponentsjs/webcomponents-loader.js">
+		import '@banno/polymer/polymer-element';
+		// import '@banno/polymer/polymer';
+	</script>
 </body>
 </html>

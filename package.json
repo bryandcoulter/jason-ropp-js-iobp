@@ -6,7 +6,7 @@
   "scripts": {
     "wow": "ux-lint src/*/*.html",
     "build": "webpack --mode development",
-    "start": "webpack-dev-server --https --port 1820 --mode production",
+    "start": "webpack-dev-server --https --port 1820 --mode development",
     "help": "npm-scripts-help",
     "lint": "ux-lint src/pages/*.html"
   },

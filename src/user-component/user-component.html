@@ -1,5 +1,5 @@
-<link rel="import" href="../../node_modules/@banno/polymer/polymer.html">
-<link rel="import" href="../../node_modules/@banno/polymer/polymer-element.html">
+<!-- <link rel="import" href="../../node_modules/@banno/polymer/polymer"> -->
+<!-- <link rel="import" href="../../node_modules/@banno/polymer/polymer-element">  -->
 <dom-module id="user-component">
   <template>
     <style>
@@ -85,7 +85,9 @@
     </template>
   </template>
   <script>
-    'use strict';
+		'use strict';
+		import '@banno/polymer/polymer-element';
+		// import '@banno/polymer/polymer';
     class UserComponent extends Polymer.Element {
       static get is() { return 'user-component'; }
       static get properties() {

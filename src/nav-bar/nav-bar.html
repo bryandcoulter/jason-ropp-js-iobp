@@ -1,5 +1,5 @@
-<link rel="import" href="../../node_modules/@banno/polymer/polymer-element.html">
-<link rel="import" href="../../node_modules/@banno/polymer/polymer.html">
+<!-- <link rel="import" href="../../node_modules/@banno/polymer/polymer-element.html">
+<link rel="import" href="../../node_modules/@banno/polymer/polymer.html"> -->
 <dom-module id="nav-bar">
   <template>
     <style>
@@ -23,7 +23,9 @@
     </nav>
   </template>
   <script>
-    'use strict';
+		'use strict';
+		// import '@banno/polymer/polymer';
+		import '@banno/polymer/polymer-element';
     class NavBar extends Polymer.Element {
       static get is() { return 'nav-bar'; }
     }
