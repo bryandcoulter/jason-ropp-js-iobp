@@ -26,7 +26,7 @@
 
   <div id="ce-es5-shim">
     <script type="text/javascript">
-      if (!window.customElements) {
+      if (window.customElements) {
         var ceShimContainer = document.querySelector('#ce-es5-shim');
         ceShimContainer.parentElement.removeChild(ceShimContainer);
       }
