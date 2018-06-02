@@ -33,7 +33,7 @@
         margin: 5px;
       }
     </style>
-    <template is="dom-if" if="[[userProfileDisplay]]">
+    <template is="dom-if" if="[[userProfileToDisplay]]">
       <div class="default-card">
         <p>You have not selected a user</p>
       </div>
@@ -70,8 +70,9 @@
             <fieldset>
               <legend>Contact:</legend>
               <label for="email">
-                <input id="email" type="email" placeholder="email"autocomplete="email" value="[[user.email]]" name="email" required>
-              </label><br>
+                <input id="email" type="email" placeholder="email" autocomplete="email" value="[[user.email]]" name="email" required>
+              </label>
+              <br>
               <label for="phone">
                 <input id="phone" type="tel" placeholder="phone" autocomplete="tel" value="[[user.phone]]" required>
               </label>
@@ -105,7 +106,6 @@
           collapsed: {
             type: Boolean,
             value: false,
-            observer: 'collapseDetails'
           },
           user: {
             type: Object,
@@ -113,14 +113,12 @@
           users: {
             type: Array,
           },
-          userBeforeEdit: {
-            type: Object
-          },
           userProfile: {
             type: Boolean
           },
-          userProfileDisplay: {
-            type: Boolean
+          userProfileToDisplay: {
+            type: Boolean,
+            computed: 'checkIfUserSelected()'
           }
         };
       }
@@ -132,11 +130,6 @@
           this.set('users', []);
         } else {
           this.set('users', users);
-        }
-
-        // Only shows if there is not a user selected.
-        if (!this.user && this.userProfile) {
-          this.userProfileDisplay = true;
         }
 
       }
@@ -152,15 +145,19 @@
         return true;
       }
 
+      checkIfUserSelected() {
+        // Only shows if there is not a user selected.
+        return !this.user && this.userProfile;
+      }
+
       createNewUserId() {
-        let id = [];
+        let id = '';
 
         // returns 9 random letters/symbols/numbers and pushes them into the id.
         for (let i = 0; i < 9; i++) { // eslint-disable-line no-magic-numbers
           let number = Math.random() * (94); // eslint-disable-line no-magic-numbers
-          id.push(String.fromCharCode(Math.floor(number + 33))); // eslint-disable-line no-magic-numbers
+          id += String.fromCharCode(Math.floor(number + 33)); // eslint-disable-line no-magic-numbers
         }
-        id = id.join('');
 
         // Checks to make sure id is not already in use
         if (this.getIdIndex(id)) {
@@ -214,20 +211,17 @@
           if (user.id === undefined) {
             user.id = this.createNewUserId();
             this.users.splice(0, 0, user);
-
-            this.saveToLocalStorage();
             this.emptyNewUserForm();
             // if existing user
           } else {
             let index = this.getIdIndex(this.user.id);
             this.users.splice(index, 1, user);
             this.user = user;
-
-            this.saveToLocalStorage();
             // Updates the information displayed on the user card so when you close the edit window it displays properly
             this.toggleView();
           }
 
+          this.saveToLocalStorage();
           if (this.collapsed) {
             this.toggleCollapse();
           }
