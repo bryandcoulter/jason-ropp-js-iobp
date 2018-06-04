@@ -46,6 +46,11 @@ module.exports = {
 			{
 				from: path.resolve(__dirname, 'node_modules/@webcomponents/webcomponentsjs/*.js'),
 				to: '@webcomponents/webcomponentsjs/[name].[ext]'
-			}])
+			},
+			{
+				from: path.resolve(__dirname, 'node_modules/@webcomponents/webcomponentsjs/*/*.js'),
+				to: '@webcomponents/webcomponentsjs/bundles/[name].[ext]'
+			}
+		])
 	]
 };

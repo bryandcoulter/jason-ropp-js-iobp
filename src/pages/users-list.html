@@ -33,7 +33,36 @@
   <h1>
     Users:
   </h1>
-  <user-list></user-list>
+	<user-list></user-list>
+
+	<div id="ce-es5-shim">
+    <script type="text/javascript">
+      if (window.customElements) {
+        var ceShimContainer = document.querySelector('#ce-es5-shim');
+        ceShimContainer.parentElement.removeChild(ceShimContainer);
+      }
+    </script>
+    <script type="text/javascript" src="@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+  </div>
+
+  <!--
+    Then we have to use the webcomponents loader
+  -->
+  <script>
+    (function() {
+      document.addEventListener('WebComponentsReady', function componentsReady() {
+        document.removeEventListener('WebComponentsReady', componentsReady, false);
+        var script = document.createElement('script');
+        script.src = '<%= htmlWebpackPlugin.files.js[0] %>';
+        var refScript = document.getElementsByTagName('script')[0];
+        refScript.parentNode.insertBefore(script, refScript);
+      }, false);
+    })();
+	</script>
+	<script src="@webcomponents/webcomponentsjs/webcomponents-loader.js">
+		import '@banno/polymer/polymer-element';
+		// import '@banno/polymer/polymer';
+	</script>
 </body>
 
 </html>

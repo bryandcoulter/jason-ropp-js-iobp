@@ -24,7 +24,7 @@
       input {
         margin: 5px;
       }
-    </style>
+		</style>
     <template is="dom-if" if="[[userProfileDisplay]]">
       <div class="default-card">
         <p>You have not selected a user</p>
@@ -241,7 +241,7 @@
       }
     }
 
-    customElements.define(UserComponent.is, UserComponent);
+    window.customElements.define(UserComponent.is, UserComponent);
   </script>
 </dom-module>
 
