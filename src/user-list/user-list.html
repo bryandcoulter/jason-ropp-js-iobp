@@ -49,8 +49,8 @@
 
     <template is="dom-if" if="[[userToDisplay]]">
       <p>Click the user card to toggle detals</p>
-      <template is="dom-repeat" items="[[users]]">
-        <user-component collapsed="true" mode="display" user="[[item]]">
+      <template is="dom-repeat" items="[[users]]" as="user">
+        <user-component collapsed="true" mode="display" user="[[user]]">
         </user-component>
       </template>
     </template>
