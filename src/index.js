@@ -1,3 +1,4 @@
+import './my-app.html';
 (() => {
 
 	function toggleDisplay(elem) {

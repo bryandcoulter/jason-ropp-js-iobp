@@ -1,4 +1,6 @@
-<link rel="import" href="polymer.html">
+<!-- bplint-disable no-unused-import -->
+<link rel="import" href="~@banno/polymer/polymer-element.js">
+<!-- bplint-enable no-unused-import -->
 <dom-module id="nav-bar">
   <template>
     <style>
@@ -15,19 +17,38 @@
       }
     </style>
     <nav class="default-card">
-      <a href="index.html">Home</a>
-      <a href="edit-user.html">Edit User</a>
-      <a href="add-user.html">Create User</a>
-      <a href="users-list.html">User List</a>
-      <a href="user-profile.html">User Profile</a>
+      <button title="home" on-click="_home">Home</button>
+      <button title="noPage" on-click="_noPage">Edit User</button>
+      <button title="newUser" on-click="_newUser">Create User</button>
+      <button title="noPage" on-click="_noPage">User List</button>
+      <button title="noPage" on-click="_noPage">User Profile</button>
     </nav>
   </template>
-  <script>
-    'use strict';
-    class NavBar extends Polymer.Element {
+  <script type="module">
+    import { Element as PolymerElement } from '@banno/polymer/polymer-element.js';
+    /** @polymer */
+    
+    class NavBarElement extends PolymerElement {
       static get is() { return 'nav-bar'; }
+      _home() {
+        this._routeMe('home');
+      }
+      _newUser() {
+        this._routeMe('newUser');
+      }
+      _noPage() {
+        this._routeMe('noPage');
+      }
+      _routeMe(page) {
+        this.dispatchEvent(new CustomEvent('page-change', {
+          bubbles: true,
+          composed: true,
+          detail: page
+        }));
+      }
     }
 
-    window.customElements.define(NavBar.is, NavBar);
+    window.customElements.define(NavBarElement.is, NavBarElement);
+    export default NavBarElement;
   </script>
 </dom-module>

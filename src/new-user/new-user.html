@@ -1,4 +1,6 @@
-<link rel="import" href="polymer.html">
+<!-- bplint-disable no-unused-import -->
+<link rel="import" href="~@banno/polymer/polymer-element.js">
+<!-- bplint-enable no-unused-import -->
 <dom-module id="new-user">
   <template>
     <style>
@@ -86,9 +88,10 @@
       </form>
     </div>
   </template>
-  <script>
-    'use strict';
-    class NewUser extends Polymer.Element {
+  <script type="module">
+    import { Element as PolymerElement } from '@banno/polymer/polymer-element.js';
+    /** @polymer */
+    class NewUserElement extends PolymerElement {
       static get is() { return 'new-user'; }
       static get properties() {
         return {
@@ -151,6 +154,7 @@
       }
     }
 
-    customElements.define(NewUser.is, NewUser);
+    customElements.define(NewUserElement.is, NewUserElement);
+    export default NewUserElement;
   </script>
 </dom-module>
